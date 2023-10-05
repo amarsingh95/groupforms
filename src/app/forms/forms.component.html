@@ -1,0 +1,75 @@
+<div class="container mt-3">
+    <ng-container [formGroup]="university">
+        <div class="row">
+            <div class="col-md-12">
+                <label>University Name</label>
+                <input formControlName="uname" />
+            </div>
+            
+                <ng-container formArrayName="department">
+                    <ng-container *ngFor="let depart of department.controls;let i=index;" [formGroupName]="i">
+                        <div class="col-md-6 mt-3">
+                            <label>Department</label>
+                            <input  formControlName="dname"/>
+
+                          <div class="col-md-12 mt-3"></div>
+                         <ng-container formArrayName="students">
+                            
+                           <ng-container *ngFor="let s of students(i).controls;let j=index" [formGroupName]="j">
+
+                            <div class="col-md-3">
+                                <label>First Name</label>
+                                <input  formControlName="firstname"/>
+                            </div>
+
+                            <div class="col-md-3">
+                                <label>Last Name</label>
+                                <input  formControlName="lastname"/>
+                            </div>
+
+                            <div class="col-md-3">
+                                <label>Email</label>
+                                <input  formControlName="email"/>
+                            </div>
+
+                            <ng-container formArrayName="subject">
+                                
+
+                                <ng-container *ngFor="let sub of subjects(i,j).controls;let k=index;" [formGroupName]="k">
+                                    <div class="col-md-3">
+                                        <label>Subject</label>
+                                        <input  formControlName="subname"/>
+                                    </div>
+    
+                                    <div class="col-md-3">
+                                        <button (click)="addSubjects(i,j)">Add Subjects</button>
+                                    </div> 
+                                </ng-container>
+                                   
+                            </ng-container>
+                            
+                            <div class="col-md-3">
+                                <button (click)="addStudent(i)">Add Student</button>
+                            </div>
+                            
+
+                           </ng-container>
+                            
+                         </ng-container>
+                        </div>
+
+                        <div class="col-md-6 mt-3">
+                            <button type="button" (click)="addDepartment()">Add Department</button>
+                        </div>
+
+                    </ng-container>
+                </ng-container>
+        
+
+            <div class="col-md-12 mt">
+                <button type="button" (click)="displayValue()">Show</button>
+            </div>
+        </div>
+
+    </ng-container>
+</div>
