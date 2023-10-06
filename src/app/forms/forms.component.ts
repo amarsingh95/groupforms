@@ -14,7 +14,7 @@ export class FormsComponent implements OnInit {
 
   ngOnInit(): void {
     this.university = this.fb.group({
-      uname: ['', []],
+      uname: ['', [Validators.required]],
       department: this.fb.array([this.createDepartment()])
     })
   }

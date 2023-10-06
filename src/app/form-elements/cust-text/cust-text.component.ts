@@ -14,6 +14,7 @@ export class CustTextComponent implements OnInit {
   @Input()displayErr:boolean=false;
   @Input()errName:string='';
   @Input()inputValidity:boolean=false;
+  @Input()labelText:string='';
   ngOnInit(): void {
 
   }
