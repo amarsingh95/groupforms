@@ -97,4 +97,10 @@ export class FormsComponent implements OnInit {
   {
     this.subjects(dIndex,studIndex).removeAt(subIndex);
   }
+
+
+  saveUniversity()
+  {
+    console.log(this.university.value);
+  }
 }
