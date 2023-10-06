@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormArray, FormBuilder,FormGroup} from '@angular/forms'
+import {FormArray, FormBuilder,FormGroup, Validators} from '@angular/forms'
 @Component({
   selector: 'app-forms',
   templateUrl: './forms.component.html',
@@ -27,7 +27,7 @@ export class FormsComponent implements OnInit {
   createDepartment()
   {
     return this.fb.group({
-      dname:['',[]],
+      dname:['',[Validators.required]],
       students:this.fb.array([this.createStudent()])
     })
   }
@@ -35,16 +35,16 @@ export class FormsComponent implements OnInit {
   createStudent()
   {
     return this.fb.group({
-      firstname:['',[]],
-      lastname:['',[]],
-      email:['',[]],
+      firstname:['',[Validators.required]],
+      lastname:['',[Validators.required]],
+      email:['',[Validators.required]],
       subject:this.fb.array([this.createSubjects()])
     })
   }
 
   createSubjects(){
     return this.fb.group({
-      subname:['',[]]
+      subname:['',[Validators.required]]
     })
   }
 
@@ -77,12 +77,6 @@ export class FormsComponent implements OnInit {
     this.subjects(departmentIndex,studentIndex).push(this.createSubjects())
   }
 
-  displayValue()
-  {
-    console.log(this.university.value);
-  }
-
-
   removeDepartment(dIndex:number)
   {
     this.department.removeAt(dIndex);
@@ -101,6 +95,8 @@ export class FormsComponent implements OnInit {
 
   saveUniversity()
   {
+    console.log(this.university);
+    console.log(this.university.valid);
     console.log(this.university.value);
   }
 }
