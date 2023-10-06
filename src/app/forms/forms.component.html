@@ -41,21 +41,21 @@
                                         <input class="form-control"  formControlName="subname"/>
                                     </div>
     
-                                    <div class="col-md-3">
+                                    <div class="col-md-3 mt-3">
                                         <button class="btn btn-primary" (click)="addSubjects(i,j)" *ngIf="i===k">Add Subjects</button>
                                     </div> 
-                                    <div class="col-md-3">
+                                    <div class="col-md-3 mt-3">
                                         <button class="btn btn-primary" (click)="removeSubject(i,j,k)" *ngIf="i!==k">Remove Subjects</button>
                                     </div> 
                                 </ng-container>
                                    
                             </ng-container>
                             
-                            <div class="col-md-3">
+                            <div class="col-md-3 mt-3">
                                 <button class="btn btn-primary" (click)="addStudent(i)" *ngIf="j===0">Add Student</button>
                             </div>
 
-                            <div class="col-md-3">
+                            <div class="col-md-3 mt-3">
                                 <button class="btn btn-primary" (click)="removeStudent(i,j)" *ngIf="j!==0">Remove Student</button>
                             </div>
                             
@@ -77,8 +77,8 @@
                 </ng-container>
         
 
-            <div class="col-md-12 mt">
-                <button type="button" class="btn btn-primary" (click)="displayValue()">Show</button>
+            <div class="col-md-12 mt-3">
+                <button type="button" class="btn btn-primary" (click)="saveUniversity()">Save Form</button>
             </div>
         </div>
 
