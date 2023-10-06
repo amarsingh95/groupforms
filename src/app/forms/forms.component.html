@@ -4,14 +4,23 @@
             <div class="col-md-12">
                 <label>University Name</label>
 
-                <app-cust-text [styleText]="'form-control'" [FormGropText]="university" [FromControlNameText]="'uname'"></app-cust-text>
+                <app-cust-text [styleText]="university.get('uname')?.touched?getFormValidity(university,'uname','required')?'form-control is-valid':'form-control is-invalid':'form-control'"
+                            [FormGropText]="university"
+                            [FromControlNameText]="'uname'"
+                            [inputValidity]="getFormValidity(university,'uname','required')"
+                            [errName]="'required'"></app-cust-text>
+                <!-- <app-cust-text [styleText]="'form-control'" [FormGropText]="university" [FromControlNameText]="'uname'" [displayErr]="true" [errName]="'required'"></app-cust-text> -->
             </div>
             
                 <ng-container formArrayName="department">
                     <ng-container *ngFor="let depart of department.controls;let i=index;" [formGroupName]="i">
                         <div class="col-md-6 mt-3">
                             <label>Department</label>
-                            <app-cust-text [styleText]="'form-control'" [FormGropText]="depart" [FromControlNameText]="'dname'"></app-cust-text>
+                            <app-cust-text [styleText]="depart?.get('dname')?.touched?getFormValidity(depart,'dname','required')?'form-control is-valid':'form-control is-invalid':'form-control'"
+                            [FormGropText]="depart"
+                            [FromControlNameText]="'dname'"
+                            [inputValidity]="getFormValidity(depart,'dname','required')"
+                            [errName]="'required'"></app-cust-text>
 
                           <div class="col-md-12 mt-3"></div>
                          <ng-container formArrayName="students">

@@ -1,4 +1,4 @@
-import { Component, OnInit,Input } from '@angular/core';
+import { Component, OnInit,Input,ChangeDetectorRef} from '@angular/core';
 
 @Component({
   selector: 'app-cust-text',
@@ -7,12 +7,17 @@ import { Component, OnInit,Input } from '@angular/core';
 })
 export class CustTextComponent implements OnInit {
 
-  constructor() { }
+  constructor(private cdr:ChangeDetectorRef) { }
   @Input()FormGropText:any;
   @Input()FromControlNameText:string='';
   @Input()styleText:string='';
+  @Input()displayErr:boolean=false;
+  @Input()errName:string='';
+  @Input()inputValidity:boolean=false;
   ngOnInit(): void {
 
   }
+ 
+
 
 }

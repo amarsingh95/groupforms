@@ -1,4 +1,18 @@
 <div [formGroup]="FormGropText">
+    <label ></label>
     <input type="text" [formControlName]="FromControlNameText" [class]="styleText" />
+    {{inputValidity}}
+    <ng-container *ngIf="inputValidity">
+        <div class="valid-feedback">
+            appropriate
+          </div>
+    </ng-container>
+
+    <ng-container *ngIf="!inputValidity">
+        <div class="invalid-feedback">
+            {{errName}}
+          </div>
+    </ng-container>
+    
 </div>
 
