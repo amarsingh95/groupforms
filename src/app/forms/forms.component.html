@@ -3,14 +3,14 @@
         <div class="row">
             <div class="col-md-12">
                 <label>University Name</label>
-                <input formControlName="uname" />
+                <input class="form-control" formControlName="uname" />
             </div>
             
                 <ng-container formArrayName="department">
                     <ng-container *ngFor="let depart of department.controls;let i=index;" [formGroupName]="i">
                         <div class="col-md-6 mt-3">
                             <label>Department</label>
-                            <input  formControlName="dname"/>
+                            <input class="form-control"  formControlName="dname"/>
 
                           <div class="col-md-12 mt-3"></div>
                          <ng-container formArrayName="students">
@@ -19,17 +19,17 @@
 
                             <div class="col-md-3">
                                 <label>First Name</label>
-                                <input  formControlName="firstname"/>
+                                <input class="form-control"  formControlName="firstname"/>
                             </div>
 
                             <div class="col-md-3">
                                 <label>Last Name</label>
-                                <input  formControlName="lastname"/>
+                                <input class="form-control"  formControlName="lastname"/>
                             </div>
 
                             <div class="col-md-3">
                                 <label>Email</label>
-                                <input  formControlName="email"/>
+                                <input class="form-control"  formControlName="email"/>
                             </div>
                            <div class="col-md-12"></div> 
                             <ng-container formArrayName="subject">
@@ -38,25 +38,25 @@
                                 <ng-container *ngFor="let sub of subjects(i,j).controls;let k=index;" [formGroupName]="k">
                                     <div class="col-md-3">
                                         <label>Subject</label>
-                                        <input  formControlName="subname"/>
+                                        <input class="form-control"  formControlName="subname"/>
                                     </div>
     
                                     <div class="col-md-3">
-                                        <button (click)="addSubjects(i,j)" *ngIf="i===k">Add Subjects</button>
+                                        <button class="btn btn-primary" (click)="addSubjects(i,j)" *ngIf="i===k">Add Subjects</button>
                                     </div> 
                                     <div class="col-md-3">
-                                        <button (click)="removeSubject(i,j,k)" *ngIf="i!==k">Remove Subjects</button>
+                                        <button class="btn btn-primary" (click)="removeSubject(i,j,k)" *ngIf="i!==k">Remove Subjects</button>
                                     </div> 
                                 </ng-container>
                                    
                             </ng-container>
                             
                             <div class="col-md-3">
-                                <button (click)="addStudent(i)" *ngIf="j===0">Add Student</button>
+                                <button class="btn btn-primary" (click)="addStudent(i)" *ngIf="j===0">Add Student</button>
                             </div>
 
                             <div class="col-md-3">
-                                <button (click)="removeStudent(i,j)" *ngIf="j!==0">Remove Student</button>
+                                <button class="btn btn-primary" (click)="removeStudent(i,j)" *ngIf="j!==0">Remove Student</button>
                             </div>
                             
 
@@ -66,11 +66,11 @@
                         </div>
 
                         <div class="col-md-3 mt-3" *ngIf="i===0">
-                            <button type="button" (click)="addDepartment()">Add Department</button>
+                            <button class="btn btn-primary" (click)="addDepartment()">Add Department</button>
                         </div>
 
                         <div class="col-md-3 mt-3" *ngIf="i!==0">
-                            <button type="button" (click)="removeDepartment(i)">Remove Department</button>
+                            <button class="btn btn-primary" (click)="removeDepartment(i)">Remove Department</button>
                         </div>
 
                     </ng-container>
@@ -78,7 +78,7 @@
         
 
             <div class="col-md-12 mt">
-                <button type="button" (click)="displayValue()">Show</button>
+                <button type="button" class="btn btn-primary" (click)="displayValue()">Show</button>
             </div>
         </div>
 
