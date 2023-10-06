@@ -81,4 +81,20 @@ export class FormsComponent implements OnInit {
   {
     console.log(this.university.value);
   }
+
+
+  removeDepartment(dIndex:number)
+  {
+    this.department.removeAt(dIndex);
+  }
+
+  removeStudent(dIndex:number,studIndex:number)
+  {
+    this.students(dIndex).removeAt(studIndex);
+  }
+
+  removeSubject(dIndex:number,studIndex:number,subIndex:number)
+  {
+    this.subjects(dIndex,studIndex).removeAt(subIndex);
+  }
 }

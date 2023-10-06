@@ -31,7 +31,7 @@
                                 <label>Email</label>
                                 <input  formControlName="email"/>
                             </div>
-
+                           <div class="col-md-12"></div> 
                             <ng-container formArrayName="subject">
                                 
 
@@ -42,14 +42,21 @@
                                     </div>
     
                                     <div class="col-md-3">
-                                        <button (click)="addSubjects(i,j)">Add Subjects</button>
+                                        <button (click)="addSubjects(i,j)" *ngIf="i===k">Add Subjects</button>
+                                    </div> 
+                                    <div class="col-md-3">
+                                        <button (click)="removeSubject(i,j,k)" *ngIf="i!==k">Remove Subjects</button>
                                     </div> 
                                 </ng-container>
                                    
                             </ng-container>
                             
                             <div class="col-md-3">
-                                <button (click)="addStudent(i)">Add Student</button>
+                                <button (click)="addStudent(i)" *ngIf="j===0">Add Student</button>
+                            </div>
+
+                            <div class="col-md-3">
+                                <button (click)="removeStudent(i,j)" *ngIf="j!==0">Remove Student</button>
                             </div>
                             
 
@@ -58,8 +65,12 @@
                          </ng-container>
                         </div>
 
-                        <div class="col-md-6 mt-3">
+                        <div class="col-md-3 mt-3" *ngIf="i===0">
                             <button type="button" (click)="addDepartment()">Add Department</button>
+                        </div>
+
+                        <div class="col-md-3 mt-3" *ngIf="i!==0">
+                            <button type="button" (click)="removeDepartment(i)">Remove Department</button>
                         </div>
 
                     </ng-container>
