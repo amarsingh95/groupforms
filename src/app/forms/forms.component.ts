@@ -43,7 +43,7 @@ genderArr:Array<string>=['Male','Female','Others']
       {value:'Hindi',selected:false},
       {value:'Marathi',selected:false},
       {value:'English',selected:false}],[Validators.required]],
-      subject: this.fb.array([this.createSubjects()])
+      subject: this.fb.array([this.createSubjects()]) 
     })
   }
 

@@ -57,7 +57,7 @@
                                     <app-cust-radio
                                     [FormGropText]="s"
                                     [FromControlNameText]="'gender'"
-                                    [styleText]="s?.get('gender')?.touched?getFormValidity(s,'gender','required')?'form-check-input':'form-check-input':'form-check-input'"
+                                    [styleText]="s?.get('gender')?.touched?getFormValidity(s,'gender','required')?'form-check-input is-invalid':'form-check-input is-valid':'form-check-input'"
                                     [inputValidity]="getFormValidity(s,'gender','required')"
                                     [errName]="'required'"
                                     [labelText]="'Gender'"
@@ -71,7 +71,7 @@
                                     <app-cust-checkbox
                                     [FormGropText]="s"
                                     [FromControlNameText]="'language'"
-                                    [styleText]="s?.get('language')?.touched?getFormValidity(s,'language','required')?'form-check-input':'form-check-input':'form-check-input'"
+                                    [styleText]="s?.get('language')?.touched?getFormValidity(s,'language','required')?'form-check-input is-invalid':'form-check-input is-valid':'form-check-input'"
                                     [inputValidity]="getFormValidity(s,'language','required')"
                                     [errName]="'required'"
                                     [labelText]="'language'"

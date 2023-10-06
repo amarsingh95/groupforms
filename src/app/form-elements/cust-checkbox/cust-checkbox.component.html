@@ -1,10 +1,23 @@
 <ng-container [formGroup]="FormGropText">
+   
     <ng-container *ngFor="let ch of FormGropText?.get(FromControlNameText)?.value;let chIndex=index" >
-        <input type="checkbox" [checked]="ch[selectProp]"  (change)="selectCheckBox(FormGropText,FromControlNameText,chIndex)"/>
+        <div class="form-check">
+        <input [class]="styleText" type="checkbox" [checked]="ch[selectProp]"  (change)="selectCheckBox(FormGropText,FromControlNameText,chIndex)"/>
         {{ch[valProp]}}
+    </div>
     </ng-container>
 
-    <div class="invalid-feedback">
-        {{errName}}
-      </div>
+
+    <ng-container *ngIf="!inputValidity">
+        <div class="valid-feedback">
+          appropriate
+        </div>
+      </ng-container>
+    
+      <ng-container *ngIf="inputValidity">
+        <div class="invalid-feedback">
+          {{errName}}
+        </div>
+      </ng-container>
+   
 </ng-container>
