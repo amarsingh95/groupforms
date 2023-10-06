@@ -1,0 +1,32 @@
+<div [formGroup]="FormGropText">
+<ng-container *ngFor="let rd of rdArr;let rdIndex=index">
+    <div class="form-check">
+    <input  class="form-check-input" type="radio" [formControlName]="FromControlNameText"  [value]="rd"  />
+    <label class="form-check-label">
+        {{rd}}
+      </label>       
+
+
+      
+<div class="invalid-feedback">
+  OK all done
+ </div>
+    </div>
+</ng-container>
+
+
+
+
+ <ng-container *ngIf="!inputValidity">
+    <div class="valid-feedback">
+        appropriate
+      </div>
+</ng-container>
+
+<ng-container *ngIf="inputValidity">
+    <div class="invalid-feedback">
+        {{errName}}
+      </div>
+</ng-container>
+
+</div>

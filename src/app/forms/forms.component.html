@@ -51,13 +51,45 @@
                                     [inputValidity]="getFormValidity(s,'email','required')" [errName]="'required'"
                                     [labelText]="'Email'"></app-cust-text>
                                 </div>
-                                <div class="col-md-12"></div>
+
+
+                                <div class="col-md-12 mt-3">
+                                    <app-cust-radio
+                                    [FormGropText]="s"
+                                    [FromControlNameText]="'gender'"
+                                    [styleText]="s?.get('gender')?.touched?getFormValidity(s,'gender','required')?'form-check-input':'form-check-input':'form-check-input'"
+                                    [inputValidity]="getFormValidity(s,'gender','required')"
+                                    [errName]="'required'"
+                                    [labelText]="'Gender'"
+                                    [rdArr]="genderArr"
+                                    [f]="validateControls(s,'gender')"
+                                    [h]="hasError(s,'gender','required')"></app-cust-radio>
+                                </div>
+
+
+                                <div class="col-md-12 mt-3">
+                                    <app-cust-checkbox
+                                    [FormGropText]="s"
+                                    [FromControlNameText]="'language'"
+                                    [styleText]="s?.get('language')?.touched?getFormValidity(s,'language','required')?'form-check-input':'form-check-input':'form-check-input'"
+                                    [inputValidity]="getFormValidity(s,'language','required')"
+                                    [errName]="'required'"
+                                    [labelText]="'language'"
+                                    [valProp]="'value'"
+                                    [selectProp]="'selected'"
+                                    [f]="validateControls(s,'language')"
+                                    [h]="hasError(s,'language','required')"></app-cust-checkbox>
+                                </div>
+                                
+
+
+
                                 <ng-container formArrayName="subject">
 
 
                                     <ng-container *ngFor="let sub of subjects(i,j).controls;let k=index;"
                                         [formGroupName]="k">
-                                        <div class="col-md-3">
+                                        <div class="col-md-3 mt-3">
                                             <app-cust-text [styleText]="'form-control'"
                                             [FormGropText]="sub"
                                             [FromControlNameText]="'subname'"

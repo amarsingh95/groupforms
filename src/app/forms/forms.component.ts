@@ -9,6 +9,9 @@ export class FormsComponent implements OnInit {
 
   constructor(private fb: FormBuilder) { }
 
+genderArr:Array<string>=['Male','Female','Others']
+
+
   //Three Level Nested dynamic form
   university: FormGroup = new FormGroup({});
 
@@ -35,6 +38,11 @@ export class FormsComponent implements OnInit {
       firstname: ['', [Validators.required]],
       lastname: ['', [Validators.required]],
       email: ['', [Validators.required]],
+      gender:['',[Validators.required]],
+      language:[[
+      {value:'Hindi',selected:false},
+      {value:'Marathi',selected:false},
+      {value:'English',selected:false}],[Validators.required]],
       subject: this.fb.array([this.createSubjects()])
     })
   }
