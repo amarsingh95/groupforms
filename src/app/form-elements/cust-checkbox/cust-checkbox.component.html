@@ -1,0 +1,10 @@
+<ng-container [formGroup]="FormGropText">
+    <ng-container *ngFor="let ch of FormGropText?.get(FromControlNameText)?.value;let chIndex=index" >
+        <input type="checkbox" [checked]="ch[selectProp]"  (change)="selectCheckBox(FormGropText,FromControlNameText,chIndex)"/>
+        {{ch[valProp]}}
+    </ng-container>
+
+    <div class="invalid-feedback">
+        {{errName}}
+      </div>
+</ng-container>
