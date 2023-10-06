@@ -3,14 +3,15 @@
         <div class="row">
             <div class="col-md-12">
                 <label>University Name</label>
-                <input class="form-control" formControlName="uname" />
+
+                <app-cust-text [styleText]="'form-control'" [FormGropText]="university" [FromControlNameText]="'uname'"></app-cust-text>
             </div>
             
                 <ng-container formArrayName="department">
                     <ng-container *ngFor="let depart of department.controls;let i=index;" [formGroupName]="i">
                         <div class="col-md-6 mt-3">
                             <label>Department</label>
-                            <input class="form-control"  formControlName="dname"/>
+                            <app-cust-text [styleText]="'form-control'" [FormGropText]="depart" [FromControlNameText]="'dname'"></app-cust-text>
 
                           <div class="col-md-12 mt-3"></div>
                          <ng-container formArrayName="students">
@@ -19,17 +20,17 @@
 
                             <div class="col-md-3">
                                 <label>First Name</label>
-                                <input class="form-control"  formControlName="firstname"/>
+                                <app-cust-text [styleText]="'form-control'" [FormGropText]="s" [FromControlNameText]="'firstname'"></app-cust-text>
                             </div>
 
                             <div class="col-md-3">
                                 <label>Last Name</label>
-                                <input class="form-control"  formControlName="lastname"/>
+                                <app-cust-text [styleText]="'form-control'" [FormGropText]="s" [FromControlNameText]="'lastname'"></app-cust-text>
                             </div>
 
                             <div class="col-md-3">
                                 <label>Email</label>
-                                <input class="form-control"  formControlName="email"/>
+                                <app-cust-text [styleText]="'form-control'" [FormGropText]="s" [FromControlNameText]="'email'"></app-cust-text>
                             </div>
                            <div class="col-md-12"></div> 
                             <ng-container formArrayName="subject">
@@ -38,7 +39,7 @@
                                 <ng-container *ngFor="let sub of subjects(i,j).controls;let k=index;" [formGroupName]="k">
                                     <div class="col-md-3">
                                         <label>Subject</label>
-                                        <input class="form-control"  formControlName="subname"/>
+                                        <app-cust-text [styleText]="'form-control'" [FormGropText]="sub" [FromControlNameText]="'subname'"></app-cust-text>
                                     </div>
     
                                     <div class="col-md-3 mt-3">
