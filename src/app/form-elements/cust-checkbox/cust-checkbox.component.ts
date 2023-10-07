@@ -17,9 +17,7 @@ export class CustCheckboxComponent implements OnInit {
   @Input()labelText:string='';
   @Input()valProp:string='';
   @Input()selectProp:string='';
-  @Input()rdArr:any;  
-  @Input()f:boolean=false;  
-  @Input()h:boolean=false;
+  @Input()rdArr:any;
   ngOnInit(): void {
   }
 

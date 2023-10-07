@@ -15,9 +15,7 @@ export class CustRadioComponent implements OnInit {
   @Input()errName:string='';
   @Input()inputValidity:boolean=false;
   @Input()labelText:string='';
-  @Input()rdArr:any;  
-  @Input()f:boolean=false;  
-  @Input()h:boolean=false;
+  @Input()rdArr:any;
 
   ngOnInit(): void {
   }
