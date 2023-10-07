@@ -1,5 +1,5 @@
 import { Component, OnInit,ChangeDetectionStrategy} from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms'
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 @Component({
   selector: 'app-forms',
   templateUrl: './forms.component.html',
@@ -10,7 +10,10 @@ export class FormsComponent implements OnInit {
 
   constructor(private fb: FormBuilder) { }
 
-genderArr:Array<string>=['Male','Female','Others']
+  genderArr:Array<string>=['Male','Female','Others']
+  langArr:Array<{value:string,selected:boolean}>=[{value:'Hindi',selected:false},
+  {value:'Marathi',selected:false},
+  {value:'English',selected:false}]
 
 
   //Three Level Nested dynamic form
@@ -35,6 +38,12 @@ genderArr:Array<string>=['Male','Female','Others']
   }
 
   createStudent() {
+
+    let lanArr:Array<any>=[];
+    this.langArr.map((dt:any)=>{
+      console.log(dt)
+      lanArr.push(this.fb.control(dt))
+    })  
     return this.fb.group({
       firstname: ['', [Validators.required]],
       lastname: ['', [Validators.required]],
@@ -44,6 +53,7 @@ genderArr:Array<string>=['Male','Female','Others']
       {value:'Hindi',selected:false},
       {value:'Marathi',selected:false},
       {value:'English',selected:false}],[Validators.required]],
+      lang:this.fb.array(lanArr),
       subject: this.fb.array([this.createSubjects()]) 
     })
   }
@@ -77,6 +87,12 @@ genderArr:Array<string>=['Male','Female','Others']
   addSubjects(departmentIndex: number, studentIndex: number) {
     this.subjects(departmentIndex, studentIndex).push(this.createSubjects())
   }
+
+  lang(departmentIndex: number, studentIndex: number)
+  {
+    return this.students(departmentIndex).at(studentIndex).get('lang') as FormArray;
+  }
+
 
   removeDepartment(dIndex: number) {
     this.department.removeAt(dIndex);
@@ -122,6 +138,11 @@ genderArr:Array<string>=['Male','Female','Others']
 
   getCheckboxValidation(chkArr: Array<{ value: string, selected: boolean }>): boolean {
     return chkArr.every((dt: { value: string, selected: boolean }) => dt.selected === false)
+  }
+
+  getChkControls(chkObj:any)
+  {
+    console.log(chkObj?.value);
   }
 
 }
