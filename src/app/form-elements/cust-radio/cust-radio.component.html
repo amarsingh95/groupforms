@@ -10,12 +10,14 @@
     </div>
     
   </ng-container>
-    
-  <ng-container *ngIf="!inputValidity">
-    <div class="valid-feedback">
-      appropriate
-    </div>
-  </ng-container>
+  <ng-container *ngIf="FormGropText?.get(FromControlNameText)?.value">
+    <ng-container *ngIf="!inputValidity">
+      <div class="valid-feedback">
+        appropriate
+      </div>
+    </ng-container>
+  </ng-container>  
+  
 
   <ng-container *ngIf="inputValidity">
     <div class="invalid-feedback">
