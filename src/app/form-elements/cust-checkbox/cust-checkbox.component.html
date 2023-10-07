@@ -2,23 +2,21 @@
    
     <ng-container *ngFor="let ch of FormGropText?.get(FromControlNameText)?.value;let chIndex=index" >
         <div class="form-check">
-        <input [class]="styleText" type="checkbox" [checked]="ch[selectProp]" (focus)="getElemtentTouched(FormGropText,FromControlNameText)"  (change)="selectCheckBox(FormGropText,FromControlNameText,chIndex);" #chk/>
+        <input [class]="styleText" type="checkbox" [checked]="ch[selectProp]" (focus)="getElemtentTouched(FormGropText,FromControlNameText,chIndex)"  (change)="selectCheckBox(FormGropText,FromControlNameText,chIndex);" #chk/>
         {{ch[valProp]}}
     </div>
     </ng-container>
-   
-    
-    <ng-container *ngIf="getValidChk">OK all done</ng-container>
-
-    <ng-container *ngIf="!getValidChk">
-        <div class="valid-feedback">
-          appropriate
-        </div>
-      </ng-container>
-    
-      <ng-container *ngIf="getValidChk">
+    <ng-container *ngIf="this.allTouched">
+      <ng-container *ngIf="this.getCheckboxValidation(FormGropText.get(FromControlNameText)?.value)">
         <div class="invalid-feedback">
           {{errName}}
         </div>
       </ng-container>
+    </ng-container>
+
+    <ng-container *ngIf="this.getCheckboxSomeValidation(FormGropText.get(FromControlNameText)?.value)">
+      <div class="valid-feedback">
+        appropriate
+      </div>
+    </ng-container>
 </ng-container>

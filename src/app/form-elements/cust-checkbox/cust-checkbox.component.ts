@@ -1,9 +1,10 @@
-import { Component, ElementRef, Input, OnInit,ViewChild} from '@angular/core';
+import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'app-cust-checkbox',
   templateUrl: './cust-checkbox.component.html',
-  styleUrls: ['./cust-checkbox.component.css']
+  styleUrls: ['./cust-checkbox.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CustCheckboxComponent implements OnInit {
 
@@ -18,9 +19,9 @@ export class CustCheckboxComponent implements OnInit {
   @Input() valProp: string = '';
   @Input() selectProp: string = '';
   @Input() rdArr: any;
-  checkCounter:number=0;
+  allTouched: boolean = false;
   ngOnInit(): void {
-    
+
   }
 
 
@@ -30,26 +31,32 @@ export class CustCheckboxComponent implements OnInit {
       arr[chIndex][this.selectProp] = !arr[chIndex][this.selectProp];
       FormGropText.get(FromControlNameText)?.setValue(arr);
     }
-  }  
+  }
 
 
-  getElemtentTouched(FormGropText: any, FromControlNameText: string)
-  {
-    this.checkCounter=this.checkCounter+1;
-    if(FormGropText?.get(FromControlNameText)?.value?.length !== undefined)
-    {
-     return this.checkCounter===FormGropText?.get(FromControlNameText)?.value?.length 
+  getElemtentTouched(FormGropText: any, FromControlNameText: string, chIndex: number) {
+    if (chIndex === FormGropText?.get(FromControlNameText)?.value?.length - 1) {
+      this.allTouched = true
+    } else {
+      this.allTouched = false;
     }
-    return false
   }
 
   getCheckboxValidation(chkArr: Array<{ value: string, selected: boolean }>): boolean {
     return chkArr.every((dt: { value: string, selected: boolean }) => dt.selected === false)
   }
 
+  getCheckboxSomeValidation(chkArr: Array<{ value: string, selected: boolean }>): boolean {
+    return chkArr.some((dt: { value: string, selected: boolean }) => dt.selected === true)
+  }
 
-  getValidChk(FormGropText: any, FromControlNameText: string){
-    return this.getElemtentTouched(FormGropText,FromControlNameText) && this.getCheckboxValidation(FormGropText?.get(FromControlNameText)?.value)
+
+  getValidChk(FormGropText: any, FromControlNameText: string) {
+    if(this.allTouched && this.getCheckboxValidation(FormGropText.get(FromControlNameText)?.value))
+    {
+      return true
+    }
+    return false
   }
 
 }
