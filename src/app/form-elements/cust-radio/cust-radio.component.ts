@@ -1,13 +1,14 @@
-import { Component, OnInit,Input,ChangeDetectorRef} from '@angular/core';
+import { Component, OnInit,Input,ChangeDetectionStrategy} from '@angular/core';
 
 @Component({
   selector: 'app-cust-radio',
   templateUrl: './cust-radio.component.html',
-  styleUrls: ['./cust-radio.component.css']
+  styleUrls: ['./cust-radio.component.css'],
+  changeDetection:ChangeDetectionStrategy.OnPush
 })
 export class CustRadioComponent implements OnInit {
 
-  constructor(private cdr:ChangeDetectorRef) { }
+  constructor() { }
   @Input()FormGropText:any;
   @Input()FromControlNameText:string='';
   @Input()styleText:string='';

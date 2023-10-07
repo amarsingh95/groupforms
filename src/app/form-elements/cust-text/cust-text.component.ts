@@ -1,9 +1,10 @@
-import { Component, OnInit,Input,ChangeDetectorRef} from '@angular/core';
+import { Component, OnInit,Input,ChangeDetectorRef,ChangeDetectionStrategy} from '@angular/core';
 
 @Component({
   selector: 'app-cust-text',
   templateUrl: './cust-text.component.html',
-  styleUrls: ['./cust-text.component.css']
+  styleUrls: ['./cust-text.component.css'],
+  changeDetection:ChangeDetectionStrategy.OnPush
 })
 export class CustTextComponent implements OnInit {
 

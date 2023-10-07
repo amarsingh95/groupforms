@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ChangeDetectionStrategy} from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms'
 @Component({
   selector: 'app-forms',
   templateUrl: './forms.component.html',
-  styleUrls: ['./forms.component.css']
+  styleUrls: ['./forms.component.css'],
+  changeDetection:ChangeDetectionStrategy.OnPush
 })
 export class FormsComponent implements OnInit {
 
@@ -103,9 +104,8 @@ genderArr:Array<string>=['Male','Female','Others']
   }
 
 
-  validateControls(FormGrp: any, formControlNameTxt: string,chkType:boolean) {
-    let inputValidity=chkType?this.getCheckboxValidation(FormGrp?.get(formControlNameTxt)?.value):FormGrp.get(formControlNameTxt).invalid
-    if (FormGrp.get(formControlNameTxt).touched && inputValidity)
+  validateControls(FormGrp: any, formControlNameTxt: string) {
+    if (FormGrp.get(formControlNameTxt).touched && FormGrp.get(formControlNameTxt).invalid)
       return true
     return false
   }
@@ -117,7 +117,7 @@ genderArr:Array<string>=['Male','Female','Others']
   }
 
   getFormValidity(FormGrp: any, formControlNameTxt: string,errName:string,chkType:boolean){
-    return this.validateControls(FormGrp, formControlNameTxt,chkType) && this.hasError(FormGrp, formControlNameTxt,errName)
+    return this.validateControls(FormGrp, formControlNameTxt) && this.hasError(FormGrp, formControlNameTxt,errName)
   }
 
   getCheckboxValidation(chkArr: Array<{ value: string, selected: boolean }>): boolean {
