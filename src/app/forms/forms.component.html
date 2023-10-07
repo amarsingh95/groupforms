@@ -82,7 +82,7 @@
                                         <ng-container *ngFor="let lan of lang(i,j).controls;let lanIndex=index;">
                                             <div class="col-md-12">
                                                 <div class="form-check">
-                                                <input class="form-check-input is-invalid" type="checkbox" [checked]="lan?.value?.selected"  (click)="getChkControls(lan)">
+                                                <input [class]="lan?.touched?'form-check-input is-invalid':'form-check-input'"   type="checkbox" [checked]="lan?.value?.selected"  (click)="getChkControls(lan)">
                                                 {{lan?.value?.value}}
                                             </div>
                                             </div>            
