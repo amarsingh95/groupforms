@@ -3,9 +3,9 @@
         <div class="row">
             <div class="col-md-12">
                 <app-cust-text
-                    [styleText]="university.get('uname')?.touched?getFormValidity(university,'uname','required')?'form-control is-invalid':'form-control is-valid':'form-control'"
+                    [styleText]="university.get('uname')?.touched?getFormValidity(university,'uname','required',false)?'form-control is-invalid':'form-control is-valid':'form-control'"
                     [FormGropText]="university" [FromControlNameText]="'uname'"
-                    [inputValidity]="getFormValidity(university,'uname','required')" [errName]="'required'"
+                    [inputValidity]="getFormValidity(university,'uname','required',false)" [errName]="'required'"
                     [labelText]="'University Name'"></app-cust-text>
 
             </div>
@@ -15,8 +15,8 @@
                     <div class="col-md-6 mt-3">
                         <app-cust-text
                             [FormGropText]="depart" [FromControlNameText]="'dname'"
-                            [styleText]="depart?.get('dname')?.touched?getFormValidity(depart,'dname','required')?'form-control is-invalid':'form-control is-valid':'form-control'"
-                            [inputValidity]="getFormValidity(depart,'dname','required')" [errName]="'required'"
+                            [styleText]="depart?.get('dname')?.touched?getFormValidity(depart,'dname','required',false)?'form-control is-invalid':'form-control is-valid':'form-control'"
+                            [inputValidity]="getFormValidity(depart,'dname','required',false)" [errName]="'required'"
                             [labelText]="'Department'"></app-cust-text>
 
                         <div class="col-md-12 mt-3"></div>
@@ -28,8 +28,8 @@
                                     <app-cust-text [styleText]="'form-control'" 
                                     [FormGropText]="s"
                                     [FromControlNameText]="'firstname'"
-                                    [styleText]="s?.get('firstname')?.touched?getFormValidity(s,'firstname','required')?'form-control is-invalid':'form-control is-valid':'form-control'"
-                                    [inputValidity]="getFormValidity(s,'firstname','required')" [errName]="'required'"
+                                    [styleText]="s?.get('firstname')?.touched?getFormValidity(s,'firstname','required',false)?'form-control is-invalid':'form-control is-valid':'form-control'"
+                                    [inputValidity]="getFormValidity(s,'firstname','required',false)" [errName]="'required'"
                                     [labelText]="'First Name'">
                                 </app-cust-text>
                                 </div>
@@ -38,8 +38,8 @@
                                     <app-cust-text [styleText]="'form-control'"
                                     [FormGropText]="s"
                                     [FromControlNameText]="'lastname'"
-                                    [styleText]="s?.get('lastname')?.touched?getFormValidity(s,'lastname','required')?'form-control is-invalid':'form-control is-valid':'form-control'"
-                                    [inputValidity]="getFormValidity(s,'lastname','required')" [errName]="'required'"
+                                    [styleText]="s?.get('lastname')?.touched?getFormValidity(s,'lastname','required',false)?'form-control is-invalid':'form-control is-valid':'form-control'"
+                                    [inputValidity]="getFormValidity(s,'lastname','required',false)" [errName]="'required'"
                                     [labelText]="'Last Name'"></app-cust-text>
                                 </div>
 
@@ -47,8 +47,8 @@
                                     <app-cust-text [styleText]="'form-control'"
                                     [FormGropText]="s"
                                     [FromControlNameText]="'email'"
-                                    [styleText]="s?.get('email')?.touched?getFormValidity(s,'email','required')?'form-control is-invalid':'form-control is-valid':'form-control'"
-                                    [inputValidity]="getFormValidity(s,'email','required')" [errName]="'required'"
+                                    [styleText]="s?.get('email')?.touched?getFormValidity(s,'email','required',false)?'form-control is-invalid':'form-control is-valid':'form-control'"
+                                    [inputValidity]="getFormValidity(s,'email','required',false)" [errName]="'required'"
                                     [labelText]="'Email'"></app-cust-text>
                                 </div>
 
@@ -57,8 +57,8 @@
                                     <app-cust-radio
                                     [FormGropText]="s"
                                     [FromControlNameText]="'gender'"
-                                    [styleText]="s?.get('gender')?.touched?getFormValidity(s,'gender','required')?'form-check-input is-invalid':'form-check-input is-valid':'form-check-input'"
-                                    [inputValidity]="getFormValidity(s,'gender','required')"
+                                    [styleText]="s?.get('gender')?.touched?getFormValidity(s,'gender','required',false)?'form-check-input is-invalid':'form-check-input is-valid':'form-check-input'"
+                                    [inputValidity]="getFormValidity(s,'gender','required',false)"
                                     [errName]="'required'"
                                     [labelText]="'Gender'"
                                     [rdArr]="genderArr"></app-cust-radio>
@@ -69,8 +69,8 @@
                                     <app-cust-checkbox
                                     [FormGropText]="s"
                                     [FromControlNameText]="'language'"
-                                    [styleText]="s?.get('language')?.touched?getFormValidity(s,'language','required')?'form-check-input is-invalid':'form-check-input is-valid':'form-check-input'"
-                                    [inputValidity]="getFormValidity(s,'language','required')"
+                                    [styleText]="s?.get('language')?.touched?getFormValidity(s,'language','required',true)?'form-check-input is-invalid':'form-check-input is-valid':'form-check-input'"
+                                    [inputValidity]="getFormValidity(s,'language','required',true)"
                                     [errName]="'required'"
                                     [labelText]="'language'"
                                     [valProp]="'value'"
@@ -89,8 +89,8 @@
                                             <app-cust-text [styleText]="'form-control'"
                                             [FormGropText]="sub"
                                             [FromControlNameText]="'subname'"
-                                            [styleText]="sub.get('subname')?.touched?getFormValidity(sub,'subname','required')?'form-control is-invalid':'form-control is-valid':'form-control'"
-                                            [inputValidity]="getFormValidity(sub,'subname','required')" [errName]="'required'"
+                                            [styleText]="sub.get('subname')?.touched?getFormValidity(sub,'subname','required',false)?'form-control is-invalid':'form-control is-valid':'form-control'"
+                                            [inputValidity]="getFormValidity(sub,'subname','required',false)" [errName]="'required'"
                                             [labelText]="'Subject'"></app-cust-text>
                                         </div>
 

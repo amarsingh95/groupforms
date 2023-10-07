@@ -103,12 +103,12 @@ genderArr:Array<string>=['Male','Female','Others']
   }
 
 
-  validateControls(FormGrp: any, formControlNameTxt: string) {
-    if (FormGrp.get(formControlNameTxt).touched && FormGrp.get(formControlNameTxt).invalid)
+  validateControls(FormGrp: any, formControlNameTxt: string,chkType:boolean) {
+    let inputValidity=chkType?this.getCheckboxValidation(FormGrp?.get(formControlNameTxt)?.value):FormGrp.get(formControlNameTxt).invalid
+    if (FormGrp.get(formControlNameTxt).touched && inputValidity)
       return true
     return false
   }
-
 
   hasError(FormGrp: any, formControlNameTxt: string,errName:string) {
     if(FormGrp.get(formControlNameTxt).hasError(errName))
@@ -116,8 +116,12 @@ genderArr:Array<string>=['Male','Female','Others']
   return false
   }
 
-  getFormValidity(FormGrp: any, formControlNameTxt: string,errName:string){
-
-    return this.validateControls(FormGrp, formControlNameTxt) && this.hasError(FormGrp, formControlNameTxt,errName)
+  getFormValidity(FormGrp: any, formControlNameTxt: string,errName:string,chkType:boolean){
+    return this.validateControls(FormGrp, formControlNameTxt,chkType) && this.hasError(FormGrp, formControlNameTxt,errName)
   }
+
+  getCheckboxValidation(chkArr: Array<{ value: string, selected: boolean }>): boolean {
+    return chkArr.every((dt: { value: string, selected: boolean }) => dt.selected === false)
+  }
+
 }
