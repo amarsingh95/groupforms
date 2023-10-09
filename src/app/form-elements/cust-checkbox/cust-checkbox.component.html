@@ -1,22 +1,26 @@
 <ng-container [formGroup]="FormGropText">
-   
-    <ng-container *ngFor="let ch of FormGropText?.get(FromControlNameText)?.value;let chIndex=index" >
-        <div class="form-check">
-        <input [class]="this.allTouched?this.getCheckboxValidation(FormGropText.get(FromControlNameText)?.value)?'form-check-input is-invalid':'form-check-input is-valid':'form-check-input'" type="checkbox" [checked]="ch[selectProp]" (focus)="getElemtentTouched(FormGropText,FromControlNameText,chIndex,touchedProp)"  (change)="selectCheckBox(FormGropText,FromControlNameText,chIndex,selectProp,touchedProp);" #chk/>
-        {{ch[valProp]}}
-    </div>
-    </ng-container>
-    <ng-container *ngIf="this.allTouched">
-      <ng-container *ngIf="this.getCheckboxValidation(FormGropText.get(FromControlNameText)?.value)">
-        <div class="invalid-feedback">
-          {{errName}}
-        </div>
-      </ng-container>
-    </ng-container>
 
-    <ng-container *ngIf="this.getCheckboxSomeValidation(FormGropText.get(FromControlNameText)?.value)">
-      <div class="valid-feedback">
-        appropriate
+  <ng-container *ngFor="let ch of FormGropText?.get(FromControlNameText)?.value;let chIndex=index">
+    <div class="form-check">
+      <input [class]="styleText" type="checkbox" [checked]="ch[selectProp]"
+        (focus)="getElemtentTouched(FormGropText,FromControlNameText,chIndex,touchedProp)"
+        (change)="selectCheckBox(FormGropText,FromControlNameText,chIndex,selectProp,touchedProp);" />
+      <label class="form-check-label">{{ch[valProp]}}</label>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="this.touchedValidity">
+    <ng-container *ngIf="this.inputValidity">
+      <div class="invalid-feedback">
+        {{errName}}
       </div>
     </ng-container>
+  </ng-container>
+
+
+  <ng-container *ngIf="this.getCheckboxSomeValidation(FormGropText.get(FromControlNameText)?.value)">
+    <div class="valid-feedback">
+      appropriate
+    </div>
+  </ng-container>
 </ng-container>
