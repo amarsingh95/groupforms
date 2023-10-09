@@ -104,15 +104,6 @@ export class FormsComponent implements OnInit {
     this.subjects(dIndex, studIndex).removeAt(subIndex);
   }
 
-
-  saveUniversity() {
-    if (this.university.invalid) {
-      this.university.markAllAsTouched();
-    } else {
-    }
-  }
-
-
   validateControls(FormGrp: any, formControlNameTxt: string) {
     if (FormGrp.get(formControlNameTxt).touched && FormGrp.get(formControlNameTxt).invalid)
       return true
@@ -132,7 +123,13 @@ export class FormsComponent implements OnInit {
   getCheckboxValidation(chkArr: Array<{ value: string, selected: boolean }>): boolean {
     return chkArr.every((dt: { value: string, selected: boolean }) => dt.selected === false)
   }
-
+  
+  saveUniversity() {
+    if (this.university.invalid) {
+      this.university.markAllAsTouched();
+    } else {
+    }
+  }
   
 
 }
