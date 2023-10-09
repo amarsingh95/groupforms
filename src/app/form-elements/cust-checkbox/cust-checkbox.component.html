@@ -2,7 +2,7 @@
    
     <ng-container *ngFor="let ch of FormGropText?.get(FromControlNameText)?.value;let chIndex=index" >
         <div class="form-check">
-        <input [class]="styleText" type="checkbox" [checked]="ch[selectProp]" (focus)="getElemtentTouched(FormGropText,FromControlNameText,chIndex)"  (change)="selectCheckBox(FormGropText,FromControlNameText,chIndex);" #chk/>
+        <input [class]="styleText" type="checkbox" [checked]="ch[selectProp]" (focus)="getElemtentTouched(FormGropText,FromControlNameText,chIndex,touchedProp)"  (change)="selectCheckBox(FormGropText,FromControlNameText,chIndex,selectProp,touchedProp);" #chk/>
         {{ch[valProp]}}
     </div>
     </ng-container>
