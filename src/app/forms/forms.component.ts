@@ -70,8 +70,6 @@ export class FormsComponent implements OnInit {
   }
 
 
-
-
   students(departmentIndex: number) {
     return this.department.at(departmentIndex).get('students') as FormArray;
   }
@@ -135,8 +133,6 @@ export class FormsComponent implements OnInit {
     return chkArr.every((dt: { value: string, selected: boolean }) => dt.selected === false)
   }
 
-  getChkControls(chkObj:any)
-  {
-  }
+  
 
 }
