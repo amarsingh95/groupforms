@@ -11,9 +11,10 @@ export class FormsComponent implements OnInit {
   constructor(private fb: FormBuilder) { }
 
   genderArr:Array<string>=['Male','Female','Others']
-  langArr:Array<{value:string,selected:boolean}>=[{value:'Hindi',selected:false},
-  {value:'Marathi',selected:false},
-  {value:'English',selected:false}]
+  langArr:Array<{value:string,selected:boolean,touched:boolean}>=[
+    {value:'Hindi',selected:false,touched:false},
+  {value:'Marathi',selected:false,touched:false},
+  {value:'English',selected:false,touched:false}]
 
 
   //Three Level Nested dynamic form
@@ -50,9 +51,9 @@ export class FormsComponent implements OnInit {
       email: ['', [Validators.required]],
       gender:['',[Validators.required]],
       language:[[
-      {value:'Hindi',selected:false},
-      {value:'Marathi',selected:false},
-      {value:'English',selected:false}],[Validators.required]],
+      {value:'Hindi',selected:false,touched:false},
+      {value:'Marathi',selected:false,touched:false},
+      {value:'English',selected:false,touched:false}],[Validators.required]],
       lang:this.fb.array(lanArr),
       subject: this.fb.array([this.createSubjects()]) 
     })
