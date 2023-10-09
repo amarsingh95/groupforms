@@ -42,7 +42,6 @@ export class FormsComponent implements OnInit {
 
     let lanArr:Array<any>=[];
     this.langArr.map((dt:any)=>{
-      console.log(dt)
       lanArr.push(this.fb.control(dt))
     })  
     return this.fb.group({
@@ -109,14 +108,9 @@ export class FormsComponent implements OnInit {
 
 
   saveUniversity() {
-    console.log(this.university);
-    console.log(this.university.valid);
-    console.log(this.university.value);
     if (this.university.invalid) {
       this.university.markAllAsTouched();
-      console.log('Form validtity is ' + this.university.valid)
     } else {
-      console.log('Form validtity is ' + this.university.valid)
     }
   }
 
@@ -143,7 +137,6 @@ export class FormsComponent implements OnInit {
 
   getChkControls(chkObj:any)
   {
-    console.log(chkObj?.value);
   }
 
 }
