@@ -120,11 +120,6 @@ export class FormsComponent implements OnInit {
     return this.validateControls(FormGrp, formControlNameTxt) && this.hasError(FormGrp, formControlNameTxt,errName)
   }
 
-  getCheckboxValidation(chkArr: Array<{ value: string, selected: boolean }>): boolean {
-    return chkArr.every((dt: { value: string, selected: boolean }) => dt.selected === false)
-  }
-
-
   getChkBoxtounchedFocus(dIndex:number,studIndex:number,lanIndex:number)
   {
    this.lang(dIndex, studIndex)?.value?.map((dt:any,di:number)=>{
