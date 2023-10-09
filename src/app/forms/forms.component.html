@@ -65,7 +65,7 @@
                                 </div>
 
 
-                                <div class="col-md-12 mt-3">
+                                <!-- <div class="col-md-12 mt-3">
                                     <app-cust-checkbox
                                     [FormGropText]="s"
                                     [FromControlNameText]="'language'"
@@ -75,20 +75,24 @@
                                     [labelText]="'language'"
                                     [valProp]="'value'"
                                     [touchedProp]="'touched'"
-                                    [selectProp]="'selected'"></app-cust-checkbox>
-                                </div>
+                                    [selectProp]="'selected'"
+                                    ></app-cust-checkbox>
+                                </div> -->
 
                                 
-                                    <!-- <ng-container formArrayName="lang">
+                                    <ng-container formArrayName="lang">
                                         <ng-container *ngFor="let lan of lang(i,j).controls;let lanIndex=index;">
                                             <div class="col-md-12">
                                                 <div class="form-check">
-                                                <input [class]="lan?.touched?'form-check-input is-invalid':'form-check-input'"   type="checkbox" [checked]="lan?.value?.selected"  (click)="getChkControls(lan)">
+                                                <input [class]="this.getChkBoxtounchedControls(i,j)?this.getChkBoxValidControls(i,j)?'form-check-input is-invalid':'form-check-input is-valid':'form-check-input'"   type="checkbox" [checked]="lan?.value?.selected" (focus)="getChkBoxtounchedFocus(i,j,lanIndex)"  (change)="getChkBoxCahngeVal(i,j,lanIndex)">
                                                 {{lan?.value?.value}}
                                             </div>
-                                            </div>            
+                                            </div> 
+
+                                            <!-- {{getChkBoxValidControls(i,j)}}
+                                            {{getChkBoxtounchedControls(i,j)}}            -->
                                         </ng-container>
-                                    </ng-container> -->
+                                    </ng-container>
                                 
                                 
 

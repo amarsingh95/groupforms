@@ -123,10 +123,51 @@ export class FormsComponent implements OnInit {
   getCheckboxValidation(chkArr: Array<{ value: string, selected: boolean }>): boolean {
     return chkArr.every((dt: { value: string, selected: boolean }) => dt.selected === false)
   }
+
+
+  getChkBoxtounchedFocus(dIndex:number,studIndex:number,lanIndex:number)
+  {
+   this.lang(dIndex, studIndex)?.value?.map((dt:any,di:number)=>{
+    lanIndex===di?Object.assign(dt,{touched:true}):''
+   })
+  }
+
+
+  getChkBoxCahngeVal(dIndex:number,studIndex:number,lanIndex:number)
+  {
+    this.lang(dIndex, studIndex)?.value?.map((dt:any,di:number)=>{
+      lanIndex===di?Object.assign(dt,{selected:!dt?.selected}):''
+     })
+  }
+
+  getChkBoxtounchedControls(dIndex:number,studIndex:number)
+  {
+   return this.lang(dIndex, studIndex)?.value?.every((dt:any)=>dt?.touched)
+  }
+
+  getChkBoxValidControls(dIndex:number,studIndex:number)
+  {
+   return this.lang(dIndex, studIndex)?.value?.every((dt:any)=>!dt?.selected)
+  }
+
+
+  setChkValidatorsTouchedSave()
+  {
+    this.department.controls?.map((dt:any,di:number)=>{
+      dt?.controls?.students?.controls?.map((dts:any,dtsI:number)=>{
+         dts?.controls?.lang.value?.map((dl:any,dli:number)=>{
+          this.getChkBoxtounchedFocus(di,dtsI,dli);
+         })
+      })
+    })
+    
+    // console.log(this.department.controls)
+  }
   
   saveUniversity() {
     if (this.university.invalid) {
       this.university.markAllAsTouched();
+      this.setChkValidatorsTouchedSave();
     } else {
     }
   }
