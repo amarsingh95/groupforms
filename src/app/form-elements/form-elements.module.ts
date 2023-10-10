@@ -4,6 +4,7 @@ import { CustTextComponent } from './cust-text/cust-text.component';
 import { ReactiveFormsModule,FormsModule } from '@angular/forms';
 import { CustRadioComponent } from './cust-radio/cust-radio.component';
 import { CustCheckboxComponent } from './cust-checkbox/cust-checkbox.component';
+import { CustDropdownComponent } from './cust-dropdown/cust-dropdown.component';
 
 
 
@@ -11,13 +12,14 @@ import { CustCheckboxComponent } from './cust-checkbox/cust-checkbox.component';
   declarations: [
     CustTextComponent,
     CustRadioComponent,
-    CustCheckboxComponent
+    CustCheckboxComponent,
+    CustDropdownComponent
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
     FormsModule
   ],
-  exports:[CustTextComponent,CustRadioComponent,CustCheckboxComponent]
+  exports:[CustTextComponent,CustRadioComponent,CustCheckboxComponent,CustDropdownComponent]
 })
 export class FormElementsModule { }

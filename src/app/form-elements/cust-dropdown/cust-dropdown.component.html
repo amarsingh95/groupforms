@@ -1,0 +1,20 @@
+<div [formGroup]="FormGropText">
+    <label for="validationDefault04" class="form-label">{{labelText}}</label>
+    <select [class]="styleText" id="validationDefault04" [formControlName]="FromControlNameText">
+      <option selected disabled value="">Choose...</option>
+      <option *ngFor="let ct of dataArr" [value]="ct?.value">
+        {{ct?.value}}
+      </option>
+    </select>
+    <ng-container *ngIf="!inputValidity">
+        <div class="valid-feedback">
+            appropriate
+          </div>
+    </ng-container>
+
+    <ng-container *ngIf="inputValidity">
+        <div class="invalid-feedback">
+            {{errName}}
+          </div>
+    </ng-container>
+</div>
