@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { FormArray, FormBuilder,FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { custRadioValidation } from '../cust-validators/cust-radio.validators';
 @Component({
   selector: 'app-forms',
@@ -12,14 +12,14 @@ export class FormsComponent implements OnInit {
   constructor(private fb: FormBuilder) { }
 
   genderArr: Array<string> = ['Male', 'Female', 'Others'];
-  countryArr:Array<{text:string,value:string}>=[
-    {text:'India',value:'India'},
-    {text:'China',value:'China'},
-    {text:'Russia',value:'Russia'},
-    {text:'USA',value:'USA'},
-    {text:'Brazil',value:'Brazil'},
-    {text:'Japan',value:'Japan'},
-    {text:'Israel',value:'Israel'},
+  countryArr: Array<{ text: string, value: string }> = [
+    { text: 'India', value: 'India' },
+    { text: 'China', value: 'China' },
+    { text: 'Russia', value: 'Russia' },
+    { text: 'USA', value: 'USA' },
+    { text: 'Brazil', value: 'Brazil' },
+    { text: 'Japan', value: 'Japan' },
+    { text: 'Israel', value: 'Israel' },
   ]
 
 
@@ -31,6 +31,88 @@ export class FormsComponent implements OnInit {
       uname: ['', [Validators.required]],
       department: this.fb.array([this.createDepartment()])
     })
+
+
+
+    let data = {
+      "uname": "Pune University",
+      "department": [
+        {
+          "dname": "Information Technology",
+          "students": [
+            {
+              "firstname": "Amar",
+              "lastname": "Singh",
+              "email": "amarsinf23@esd.com",
+              "gender": "Male",
+              "language": [
+                {
+                  "value": "Hindi",
+                  "selected": true,
+                  "touched": true
+                },
+                {
+                  "value": "Marathi",
+                  "selected": true,
+                  "touched": true
+                },
+                {
+                  "value": "English",
+                  "selected": true,
+                  "touched": true
+                }
+              ],
+              "country": "USA",
+              "subject": [
+                {
+                  "subname": "Cybersecurity"
+                },
+                {
+                  "subname": "Data Structure"
+                },
+                {
+                  "subname": "Graphics"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "dname": "Mumbai",
+          "students": [
+            {
+              "firstname": "Alakh",
+              "lastname": "Singh",
+              "email": "alakh12@sadas.com",
+              "gender": "Male",
+              "language": [
+                {
+                  "value": "Hindi",
+                  "selected": false,
+                  "touched": true
+                },
+                {
+                  "value": "Marathi",
+                  "selected": false,
+                  "touched": true
+                },
+                {
+                  "value": "English",
+                  "selected": true,
+                  "touched": true
+                }
+              ],
+              "country": "India",
+              "subject": [
+                {
+                  "subname": "Mehcanics"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
   }
 
   get department() {
@@ -46,15 +128,15 @@ export class FormsComponent implements OnInit {
 
   createStudent() {
     return this.fb.group({
-      firstname: ['', [Validators.required,Validators.maxLength(10)]],
+      firstname: ['', [Validators.required, Validators.maxLength(10)]],
       lastname: ['', [Validators.required]],
       email: ['', [Validators.required]],
       gender: ['', [Validators.required]],
       language: [[
         { value: 'Hindi', selected: false, touched: false },
         { value: 'Marathi', selected: false, touched: false },
-        { value: 'English', selected: false, touched: false }], [Validators.required,custRadioValidation]],
-      country:['',[Validators.required]],
+        { value: 'English', selected: false, touched: false }], [Validators.required, custRadioValidation]],
+      country: ['', [Validators.required]],
       subject: this.fb.array([this.createSubjects()])
     })
   }
@@ -125,7 +207,7 @@ export class FormsComponent implements OnInit {
     return FormGrp.get(formControlName)?.value?.every((dt: any) => dt?.touched)
   }
 
-  setChkValidatorsTouchedSaveC(formControlTxtName:string) {
+  setChkValidatorsTouchedSaveC(formControlTxtName: string) {
     this.department.controls?.map((dt: any, di: number) => {
       dt?.controls?.students?.controls?.map((dts: any, dtsI: number) => {
         let arr: Array<any> = dts?.get(formControlTxtName)?.value;
@@ -141,7 +223,7 @@ export class FormsComponent implements OnInit {
     if (this.university.invalid) {
       this.university.markAllAsTouched();
       this.setChkValidatorsTouchedSaveC('language');
-      
+
     } else {
       console.log(this.university)
       console.log(this.university?.value)
