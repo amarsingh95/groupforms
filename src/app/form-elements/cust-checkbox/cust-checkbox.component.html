@@ -10,7 +10,7 @@
   </ng-container>
 
   <ng-container *ngIf="this.touchedValidity">
-    <ng-container *ngIf="this.inputValidity">
+    <ng-container *ngIf="inputValidity">
       <div class="invalid-feedback">
         {{errName}}
       </div>
@@ -20,7 +20,7 @@
 
   <ng-container *ngIf="this.getCheckboxSomeValidation(FormGropText.get(FromControlNameText)?.value)">
     <div class="valid-feedback">
-      appropriate
+      Appropriate
     </div>
   </ng-container>
 </ng-container>
