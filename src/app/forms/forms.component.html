@@ -26,8 +26,8 @@
                                 <div class="col-md-3">
                                     <app-cust-text [maxTextLength]="45" [styleText]="'form-control'" [FormGropText]="s"
                                         [FromControlNameText]="'firstname'"
-                                        [styleText]="s?.get('firstname')?.touched?getFormValidity(s,'firstname','maxlength',false)?'form-control is-invalid':'form-control is-valid':'form-control'"
-                                        [inputValidity]="getFormValidity(s,'firstname','maxlength',false)"
+                                        [styleText]="s?.get('firstname')?.touched?getFormValidity(s,'firstname','required',false)?'form-control is-invalid':'form-control is-valid':'form-control'"
+                                        [inputValidity]="getFormValidity(s,'firstname','required',false)"
                                         [errName]="'required'" [labelText]="'First Name'">
                                     </app-cust-text>
                                 </div>
