@@ -136,12 +136,12 @@ export class FormsComponent implements OnInit {
           {
             this.addSubjects(dtIndex,dsIndex)
           }
-          
         })
       })
     })
 
-    this.university.patchValue(data);
+    this.university.setValue(data);
+    this.getMarkedFormWithCheck();
   }
 
   get department() {
@@ -248,14 +248,19 @@ export class FormsComponent implements OnInit {
     })
   }
 
+
+  getMarkedFormWithCheck()
+  {
+    this.university.markAllAsTouched();
+    this.setChkValidatorsTouchedSaveC('language');
+  }
+
   saveUniversity() {
 
     console.log(this.university)
       console.log(this.university?.value)
     if (this.university.invalid) {
-      this.university.markAllAsTouched();
-      this.setChkValidatorsTouchedSaveC('language');
-
+      this.getMarkedFormWithCheck()
     } else {
       // console.log(this.university)
       // console.log(this.university?.value)
