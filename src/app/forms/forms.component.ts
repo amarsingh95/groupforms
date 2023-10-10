@@ -45,10 +45,8 @@ export class FormsComponent implements OnInit {
   }
 
   createStudent() {
-
-  
     return this.fb.group({
-      firstname: ['', [Validators.required]],
+      firstname: ['', [Validators.required,Validators.maxLength(10)]],
       lastname: ['', [Validators.required]],
       email: ['', [Validators.required]],
       gender: ['', [Validators.required]],
@@ -145,6 +143,8 @@ export class FormsComponent implements OnInit {
       this.setChkValidatorsTouchedSaveC('language');
       
     } else {
+      console.log(this.university)
+      console.log(this.university?.value)
     }
   }
 

@@ -2,7 +2,7 @@
     <ng-container [formGroup]="university">
         <div class="row">
             <div class="col-md-12">
-                <app-cust-text
+                <app-cust-text [maxTextLength]="45"
                     [styleText]="university.get('uname')?.touched?getFormValidity(university,'uname','required',false)?'form-control is-invalid':'form-control is-valid':'form-control'"
                     [FormGropText]="university" [FromControlNameText]="'uname'"
                     [inputValidity]="getFormValidity(university,'uname','required',false)" [errName]="'required'"
@@ -13,7 +13,7 @@
             <ng-container formArrayName="department">
                 <ng-container *ngFor="let depart of department.controls;let i=index;" [formGroupName]="i">
                     <div class="col-md-6 mt-3">
-                        <app-cust-text [FormGropText]="depart" [FromControlNameText]="'dname'"
+                        <app-cust-text [maxTextLength]="45" [FormGropText]="depart" [FromControlNameText]="'dname'"
                             [styleText]="depart?.get('dname')?.touched?getFormValidity(depart,'dname','required',false)?'form-control is-invalid':'form-control is-valid':'form-control'"
                             [inputValidity]="getFormValidity(depart,'dname','required',false)" [errName]="'required'"
                             [labelText]="'Department'"></app-cust-text>
@@ -24,16 +24,16 @@
                             <ng-container *ngFor="let s of students(i).controls;let j=index" [formGroupName]="j">
 
                                 <div class="col-md-3">
-                                    <app-cust-text [styleText]="'form-control'" [FormGropText]="s"
+                                    <app-cust-text [maxTextLength]="45" [styleText]="'form-control'" [FormGropText]="s"
                                         [FromControlNameText]="'firstname'"
-                                        [styleText]="s?.get('firstname')?.touched?getFormValidity(s,'firstname','required',false)?'form-control is-invalid':'form-control is-valid':'form-control'"
-                                        [inputValidity]="getFormValidity(s,'firstname','required',false)"
+                                        [styleText]="s?.get('firstname')?.touched?getFormValidity(s,'firstname','maxlength',false)?'form-control is-invalid':'form-control is-valid':'form-control'"
+                                        [inputValidity]="getFormValidity(s,'firstname','maxlength',false)"
                                         [errName]="'required'" [labelText]="'First Name'">
                                     </app-cust-text>
                                 </div>
 
                                 <div class="col-md-3">
-                                    <app-cust-text [styleText]="'form-control'" [FormGropText]="s"
+                                    <app-cust-text [maxTextLength]="45" [styleText]="'form-control'" [FormGropText]="s"
                                         [FromControlNameText]="'lastname'"
                                         [styleText]="s?.get('lastname')?.touched?getFormValidity(s,'lastname','required',false)?'form-control is-invalid':'form-control is-valid':'form-control'"
                                         [inputValidity]="getFormValidity(s,'lastname','required',false)"
@@ -41,7 +41,7 @@
                                 </div>
 
                                 <div class="col-md-3">
-                                    <app-cust-text [styleText]="'form-control'" [FormGropText]="s"
+                                    <app-cust-text [maxTextLength]="45" [styleText]="'form-control'" [FormGropText]="s"
                                         [FromControlNameText]="'email'"
                                         [styleText]="s?.get('email')?.touched?getFormValidity(s,'email','required',false)?'form-control is-invalid':'form-control is-valid':'form-control'"
                                         [inputValidity]="getFormValidity(s,'email','required',false)"
@@ -85,7 +85,7 @@
                                     <ng-container *ngFor="let sub of subjects(i,j).controls;let k=index;"
                                         [formGroupName]="k">
                                         <div class="col-md-3 mt-3">
-                                            <app-cust-text [styleText]="'form-control'" [FormGropText]="sub"
+                                            <app-cust-text [maxTextLength]="45" [styleText]="'form-control'" [FormGropText]="sub"
                                                 [FromControlNameText]="'subname'"
                                                 [styleText]="sub.get('subname')?.touched?getFormValidity(sub,'subname','required',false)?'form-control is-invalid':'form-control is-valid':'form-control'"
                                                 [inputValidity]="getFormValidity(sub,'subname','required',false)"
