@@ -93,12 +93,12 @@
                                         </div>
 
                                         <div class="col-md-3 mt-3">
-                                            <button class="btn btn-primary" (click)="addSubjects(i,j)" *ngIf="i===k">Add
+                                            <button class="btn btn-primary" (click)="addSubjects(i,j)" *ngIf="k===0">Add
                                                 Subjects</button>
                                         </div>
                                         <div class="col-md-3 mt-3">
                                             <button class="btn btn-primary" (click)="removeSubject(i,j,k)"
-                                                *ngIf="i!==k">Remove Subjects</button>
+                                                *ngIf="k!==0">Remove Subjects</button>
                                         </div>
                                     </ng-container>
 

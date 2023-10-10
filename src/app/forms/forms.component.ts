@@ -31,9 +31,14 @@ export class FormsComponent implements OnInit {
       uname: ['', [Validators.required]],
       department: this.fb.array([this.createDepartment()])
     })
+  
+    this.bindingFormData()
+  
+  }
 
 
-
+  bindingFormData()
+  {
     let data = {
       "uname": "Pune University",
       "department": [
@@ -113,6 +118,30 @@ export class FormsComponent implements OnInit {
         }
       ]
     }
+
+
+
+    data?.department?.map((dt:any,dtIndex:number)=>{
+      if(dtIndex!==0)
+      {
+        this.addDepartment();
+      }
+      dt?.students?.map((ds:any,dsIndex:number)=>{
+       if(dsIndex!==0)
+       {
+        this.addStudent(dtIndex);
+       } 
+        ds?.subject?.map((dsub:any,dsubIndex:number)=>{
+          if(dsubIndex!==0)
+          {
+            this.addSubjects(dtIndex,dsIndex)
+          }
+          
+        })
+      })
+    })
+
+    this.university.patchValue(data);
   }
 
   get department() {
@@ -148,29 +177,29 @@ export class FormsComponent implements OnInit {
   }
 
   addDepartment() {
-    let department = this.university.get('department') as FormArray;
-    department.push(this.createDepartment())
+    let department = this.university.get('department') as FormArray; 
+     department.push(this.createDepartment())
   }
 
 
   students(departmentIndex: number) {
-    return this.department.at(departmentIndex).get('students') as FormArray;
+    return this.department.at(departmentIndex)?.get('students') as FormArray;
   }
 
   addStudent(departmentIndex: number) {
-    this.students(departmentIndex).push(this.createStudent())
+      this.students(departmentIndex).push(this.createStudent())
   }
 
   subjects(departmentIndex: number, studentIndex: number) {
-    return this.students(departmentIndex).at(studentIndex).get('subject') as FormArray;
+    return this.students(departmentIndex)?.at(studentIndex)?.get('subject') as FormArray;
   }
 
   addSubjects(departmentIndex: number, studentIndex: number) {
-    this.subjects(departmentIndex, studentIndex).push(this.createSubjects())
+    this.subjects(departmentIndex, studentIndex)?.push(this.createSubjects());
   }
 
   lang(departmentIndex: number, studentIndex: number) {
-    return this.students(departmentIndex).at(studentIndex).get('lang') as FormArray;
+    return this.students(departmentIndex)?.at(studentIndex)?.get('lang') as FormArray;
   }
 
 
@@ -220,13 +249,16 @@ export class FormsComponent implements OnInit {
   }
 
   saveUniversity() {
+
+    console.log(this.university)
+      console.log(this.university?.value)
     if (this.university.invalid) {
       this.university.markAllAsTouched();
       this.setChkValidatorsTouchedSaveC('language');
 
     } else {
-      console.log(this.university)
-      console.log(this.university?.value)
+      // console.log(this.university)
+      // console.log(this.university?.value)
     }
   }
 
