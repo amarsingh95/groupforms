@@ -67,6 +67,18 @@
                                         [touchedValidity]="this.getChkBoxtounchedControlsC(s,'language')"></app-cust-checkbox>
                                 </div>
 
+                                <div class="col-md-12 mt-3">
+                                    <app-cust-dropdown 
+                                    [FormGropText]="s" 
+                                    [FromControlNameText]="'country'"
+                                    [styleText]="s?.get('country')?.touched?getFormValidity(s,'country','required',false)?'form-select is-invalid':'form-select is-valid':'form-select'"
+                                    [dataArr]="countryArr"
+                                    [labelText]="'Country'"
+                                    [inputValidity]="getFormValidity(s,'country','required',false)"
+                                    [errName]="'required'">
+                                    </app-cust-dropdown>
+                                </div>
+
                     
 
 

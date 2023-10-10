@@ -12,6 +12,15 @@ export class FormsComponent implements OnInit {
   constructor(private fb: FormBuilder) { }
 
   genderArr: Array<string> = ['Male', 'Female', 'Others'];
+  countryArr:Array<{text:string,value:string}>=[
+    {text:'India',value:'India'},
+    {text:'China',value:'China'},
+    {text:'Russia',value:'Russia'},
+    {text:'USA',value:'USA'},
+    {text:'Brazil',value:'Brazil'},
+    {text:'Japan',value:'Japan'},
+    {text:'Israel',value:'Israel'},
+  ]
 
 
   //Three Level Nested dynamic form
@@ -47,6 +56,7 @@ export class FormsComponent implements OnInit {
         { value: 'Hindi', selected: false, touched: false },
         { value: 'Marathi', selected: false, touched: false },
         { value: 'English', selected: false, touched: false }], [Validators.required,custRadioValidation]],
+      country:['',[Validators.required]],
       subject: this.fb.array([this.createSubjects()])
     })
   }
@@ -130,13 +140,11 @@ export class FormsComponent implements OnInit {
   }
 
   saveUniversity() {
-    
     if (this.university.invalid) {
       this.university.markAllAsTouched();
       this.setChkValidatorsTouchedSaveC('language');
       
     } else {
-      
     }
   }
 
