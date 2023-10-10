@@ -130,13 +130,13 @@ export class FormsComponent implements OnInit {
   }
 
   saveUniversity() {
-    console.log(this.university);
+    
     if (this.university.invalid) {
       this.university.markAllAsTouched();
       this.setChkValidatorsTouchedSaveC('language');
       
     } else {
-      console.log(this.university?.value);
+      
     }
   }
 
