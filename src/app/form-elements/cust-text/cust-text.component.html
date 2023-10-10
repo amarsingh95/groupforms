@@ -1,6 +1,6 @@
 <div [formGroup]="FormGropText">
     <label [for]="'validationServer01'+FromControlNameText">{{labelText}}</label>
-    <input type="text" [formControlName]="FromControlNameText" [class]="styleText" [id]="'validationServer01'+FromControlNameText"/>
+    <input type="text" [formControlName]="FromControlNameText" [class]="styleText" [id]="'validationServer01'+FromControlNameText" [maxlength]="maxTextLength"/>
 
     <ng-container *ngIf="!inputValidity">
         <div class="valid-feedback">
