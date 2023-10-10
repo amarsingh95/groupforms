@@ -1,5 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
+import { FormArray, FormBuilder,FormGroup, Validators } from '@angular/forms';
+import { custRadioValidation } from '../cust-validators/cust-radio.validators';
 @Component({
   selector: 'app-forms',
   templateUrl: './forms.component.html',
@@ -10,12 +11,7 @@ export class FormsComponent implements OnInit {
 
   constructor(private fb: FormBuilder) { }
 
-  genderArr: Array<string> = ['Male', 'Female', 'Others']
-  langArr: Array<{ value: string, selected: boolean, touched: boolean }> = [
-    { value: 'Hindi', selected: false, touched: false },
-    { value: 'Marathi', selected: false, touched: false },
-    { value: 'English', selected: false, touched: false }]
-  chkIndex: number | undefined;
+  genderArr: Array<string> = ['Male', 'Female', 'Others'];
 
 
   //Three Level Nested dynamic form
@@ -41,10 +37,7 @@ export class FormsComponent implements OnInit {
 
   createStudent() {
 
-    let lanArr: Array<any> = [];
-    this.langArr.map((dt: any) => {
-      lanArr.push(this.fb.control(dt))
-    })
+  
     return this.fb.group({
       firstname: ['', [Validators.required]],
       lastname: ['', [Validators.required]],
@@ -53,8 +46,7 @@ export class FormsComponent implements OnInit {
       language: [[
         { value: 'Hindi', selected: false, touched: false },
         { value: 'Marathi', selected: false, touched: false },
-        { value: 'English', selected: false, touched: false }], [Validators.required]],
-      lang: this.fb.array(lanArr),
+        { value: 'English', selected: false, touched: false }], [Validators.required,custRadioValidation]],
       subject: this.fb.array([this.createSubjects()])
     })
   }
@@ -120,67 +112,31 @@ export class FormsComponent implements OnInit {
     return this.validateControls(FormGrp, formControlNameTxt) && this.hasError(FormGrp, formControlNameTxt, errName)
   }
 
-  getChkBoxtounchedFocus(dIndex: number, studIndex: number, lanIndex: number) {
-    this.lang(dIndex, studIndex)?.value?.map((dt: any, di: number) => {
-      lanIndex === di ? Object.assign(dt, { touched: true }) : ''
-    })
-  }
 
-
-  getChkBoxCahngeVal(dIndex: number, studIndex: number, lanIndex: number) {
-    this.lang(dIndex, studIndex)?.value?.map((dt: any, di: number) => {
-      lanIndex === di ? Object.assign(dt, { selected: !dt?.selected }) : ''
-    })
-  }
-
-  getChkBoxtounchedControls(dIndex: number, studIndex: number) {
-    return this.lang(dIndex, studIndex)?.value?.every((dt: any) => dt?.touched)
-  }
-
-  getChkBoxValidControls(dIndex: number, studIndex: number) {
-    return this.lang(dIndex, studIndex)?.value?.every((dt: any) => !dt?.selected)
-  }
-
-  setChkValidatorsTouchedSave() {
-    this.department.controls?.map((dt: any, di: number) => {
-      dt?.controls?.students?.controls?.map((dts: any, dtsI: number) => {
-        dts?.controls?.lang.value?.map((dl: any, dli: number) => {
-          this.getChkBoxtounchedFocus(di, dtsI, dli);
-        })
-      })
-    })
-  }
-
-
-
-  ///My code
   getChkBoxtounchedControlsC(FormGrp: any, formControlName: string) {
     return FormGrp.get(formControlName)?.value?.every((dt: any) => dt?.touched)
   }
 
-  getChkBoxValidControlsC(FormGrp: any, formControlName: string) {
-    return FormGrp.get(formControlName)?.value?.every((dt: any) => !dt?.selected)
-  }
-
-
-  setChkValidatorsTouchedSaveC() {
+  setChkValidatorsTouchedSaveC(formControlTxtName:string) {
     this.department.controls?.map((dt: any, di: number) => {
       dt?.controls?.students?.controls?.map((dts: any, dtsI: number) => {
-        let arr: Array<any> = dts?.get('language')?.value;
+        let arr: Array<any> = dts?.get(formControlTxtName)?.value;
         arr?.map((dd: any) => {
           Object.assign(dd, { touched: true })
         })
-        dts?.get('language').setValue(arr);
+        dts?.get(formControlTxtName).setValue(arr);
       })
     })
   }
 
   saveUniversity() {
+    console.log(this.university);
     if (this.university.invalid) {
       this.university.markAllAsTouched();
-      this.setChkValidatorsTouchedSave();
-      this.setChkValidatorsTouchedSaveC();
+      this.setChkValidatorsTouchedSaveC('language');
+      
     } else {
+      console.log(this.university?.value);
     }
   }
 
