@@ -7,7 +7,7 @@
         <ng-container *ngFor="let mul of this.multiArr;let multIndex=index">
             <div class="form-check">
                 <input type="checkbox" class="form-check-input" [checked]="mul.selected" (change)="selectCheckbox(FormGropText,FromControlNameText,mul.value)"/>
-                <label class="form-check-label">{{mul?.text}}</label>
+                <label class="form-check-label" (click)="selectCheckbox(FormGropText,FromControlNameText,mul.value)">{{mul?.text}}</label>
             </div>
         </ng-container>
     </div>
