@@ -37,6 +37,7 @@ export class CustMultiSelectFilterComponent implements OnInit {
 
   ngOnInit(): void {
     this.multiArr = this.getMultipleDataArr();
+    this.bindMultipleSelect(this.FormGropText,this.FromControlNameText);
   }
 
   filterMultiSelectValue() {
