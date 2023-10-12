@@ -168,7 +168,7 @@ export class FormsComponent implements OnInit {
         { value: 'Marathi', selected: false, touched: false },
         { value: 'English', selected: false, touched: false }], [Validators.required, custRadioValidation]],
       country: ['', [Validators.required]],
-      topics:['One,Three,Four,Six',[Validators.required]],
+      topics:['',[Validators.required]],
       subject: this.fb.array([this.createSubjects()])
     })
   }
