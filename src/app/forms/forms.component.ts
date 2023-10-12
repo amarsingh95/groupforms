@@ -32,7 +32,7 @@ export class FormsComponent implements OnInit {
       department: this.fb.array([this.createDepartment()])
     })
   
-    // this.bindingFormData()
+    this.bindingFormData()
   
   }
 
@@ -68,6 +68,7 @@ export class FormsComponent implements OnInit {
                 }
               ],
               "country": "USA",
+              "topics":"One,Three,Four,Six,Two",
               "subject": [
                 {
                   "subname": "Cybersecurity"
@@ -108,6 +109,7 @@ export class FormsComponent implements OnInit {
                 }
               ],
               "country": "India",
+              "topics":"One,Three,Four,Six",
               "subject": [
                 {
                   "subname": "Mehcanics"
@@ -166,7 +168,7 @@ export class FormsComponent implements OnInit {
         { value: 'Marathi', selected: false, touched: false },
         { value: 'English', selected: false, touched: false }], [Validators.required, custRadioValidation]],
       country: ['', [Validators.required]],
-      topics:['',[Validators.required]],
+      topics:['One,Three,Four,Six',[Validators.required]],
       subject: this.fb.array([this.createSubjects()])
     })
   }
