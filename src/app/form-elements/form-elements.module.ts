@@ -5,6 +5,7 @@ import { ReactiveFormsModule,FormsModule } from '@angular/forms';
 import { CustRadioComponent } from './cust-radio/cust-radio.component';
 import { CustCheckboxComponent } from './cust-checkbox/cust-checkbox.component';
 import { CustDropdownComponent } from './cust-dropdown/cust-dropdown.component';
+import { CustMultiSelectFilterComponent } from './cust-multi-select-filter/cust-multi-select-filter.component';
 
 
 
@@ -13,13 +14,14 @@ import { CustDropdownComponent } from './cust-dropdown/cust-dropdown.component';
     CustTextComponent,
     CustRadioComponent,
     CustCheckboxComponent,
-    CustDropdownComponent
+    CustDropdownComponent,
+    CustMultiSelectFilterComponent
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
     FormsModule
   ],
-  exports:[CustTextComponent,CustRadioComponent,CustCheckboxComponent,CustDropdownComponent]
+  exports:[CustTextComponent,CustRadioComponent,CustCheckboxComponent,CustDropdownComponent,CustMultiSelectFilterComponent]
 })
 export class FormElementsModule { }
