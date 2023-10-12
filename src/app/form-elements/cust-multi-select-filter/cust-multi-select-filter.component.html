@@ -1,14 +1,27 @@
-<ng-container>
-    <input type="text" class="form-control" #mutiInput (click)="isDropdownActive=!isDropdownActive" placeholder="select" [value]="this.ddValue">
+<div [formGroup]="FormGropText">
+    <label [for]="'validationServer01'+FromControlNameText">{{labelText}}</label>
+    <input type="text" [class]="styleText" #mutiInput [formControlName]="FromControlNameText" (click)="isDropdownActive=!isDropdownActive" [id]="'validationServer01'+FromControlNameText"/>
     <ng-container *ngIf="isDropdownActive">
         <div class="mt-3">
         <input type="text" #filterTxt class="form-control" placeholder="filter" (keyup)="filterMultiSelectValue()" />
         <ng-container *ngFor="let mul of this.multiArr;let multIndex=index">
             <div class="form-check">
-                <input type="checkbox" class="form-check-input" [checked]="mul.selected" (change)="selectCheckbox(mul.value)"/>
+                <input type="checkbox" class="form-check-input" [checked]="mul.selected" (change)="selectCheckbox(FormGropText,FromControlNameText,mul.value)"/>
                 <label class="form-check-label">{{mul?.text}}</label>
             </div>
         </ng-container>
     </div>
     </ng-container>
-</ng-container>
+
+    <ng-container *ngIf="!inputValidity">
+        <div class="valid-feedback">
+            appropriate
+          </div>
+    </ng-container>
+
+    <ng-container *ngIf="inputValidity">
+        <div class="invalid-feedback">
+            {{errName}}
+          </div>
+    </ng-container>
+</div>

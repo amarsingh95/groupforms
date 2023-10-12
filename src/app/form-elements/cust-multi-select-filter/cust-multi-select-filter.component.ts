@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, ViewChild, ElementRef,Input} from '@angular/core';
 
 
 interface multiSelectType {
@@ -18,7 +18,14 @@ export class CustMultiSelectFilterComponent implements OnInit {
   @ViewChild('filterTxt', { static: false }) filtxt: ElementRef<HTMLInputElement> = {} as ElementRef;
   multiArr: Array<multiSelectType> = [];
   isDropdownActive: boolean = false;
-  ddValue: string = '';
+  @Input()FormGropText:any;
+  @Input()FromControlNameText:string='';
+  @Input()styleText:string='';
+  @Input()errName:string='';
+  @Input()inputValidity:boolean=false;
+  @Input()labelText:string='';
+
+
   globalValueArr: Array<multiSelectType> = [
     { value: 'One', text: 'One', selected: false },
     { value: 'Two', text: 'Two', selected: false },
@@ -45,16 +52,11 @@ export class CustMultiSelectFilterComponent implements OnInit {
   }
 
 
-  selectCheckbox(selectVal: string) {
+  selectCheckbox(FormGrp:any,formControlNameTxt:string,selectVal: string) {
     if (selectVal) {
       let sIndex: number = this.multiArr.findIndex((dt: multiSelectType) => dt.value === selectVal);
       this.multiArr[sIndex].selected = !this.multiArr[sIndex].selected;
-      this.ddValue = this.multiArr?.filter((dt: multiSelectType) => dt.selected).map((dt: multiSelectType) => dt?.value)?.join(',');
+      FormGrp.get(formControlNameTxt)?.setValue(this.multiArr?.filter((dt: multiSelectType) => dt.selected).map((dt: multiSelectType) => dt?.value)?.join(','))
     }
-  }
-
-
-  checkSelectMultiCheckBox() {
-    return this.multiArr?.some((dt: multiSelectType) => dt.selected)
   }
 }
