@@ -24,26 +24,11 @@ export class CustMultiSelectFilterComponent implements OnInit {
   @Input()errName:string='';
   @Input()inputValidity:boolean=false;
   @Input()labelText:string='';
-
-
-  globalValueArr: Array<multiSelectType> = [
-    { value: 'One', text: 'One', selected: false },
-    { value: 'Two', text: 'Two', selected: false },
-    { value: 'Three', text: 'Three', selected: false },
-    { value: 'Four', text: 'Four', selected: false },
-    { value: 'Five', text: 'Five', selected: false },
-    { value: 'Six', text: 'Six', selected: false },
-    { value: 'Seven', text: 'Seven', selected: false },
-    { value: 'Eight', text: 'Eight', selected: false },
-    { value: 'Nine', text: 'Nine', selected: false },
-    { value: 'Ten', text: 'Ten', selected: false },
-    { value: 'Eleven', text: 'Eleven', selected: false },
-    { value: 'Twelve', text: 'Twelve', selected: false },
-  ]
+  @Input()globalValueArr:Array<multiSelectType>=[];
 
   ngOnInit(): void {
     this.multiArr = this.getMultipleDataArr();
-    // this.bindMultipleSelect(this.FormGropText,this.FromControlNameText);
+    this.bindMultipleSelect(this.FormGropText,this.FromControlNameText);
   }
 
   filterMultiSelectValue(FormGrp:any,formControlNameTxt:string) {
@@ -72,11 +57,14 @@ export class CustMultiSelectFilterComponent implements OnInit {
 
   bindMultipleSelect(FormGrp:any,formControlNameTxt:string)
   {
-    let arr:Array<string>=FormGrp.get(formControlNameTxt)?.value?.split(',');
-    arr?.map((dt:string)=>{
-      let gIndex:number=this.globalValueArr.findIndex((dtM:multiSelectType)=>dtM?.value===dt);
-      this.globalValueArr[gIndex].selected=!this.globalValueArr[gIndex]?.selected;
-    })
-    FormGrp.get(formControlNameTxt)?.setValue(this.globalValueArr?.filter((dt: multiSelectType) => dt.selected).map((dt: multiSelectType) => dt?.value)?.join(','))
+    if(FormGrp.get(formControlNameTxt)?.value)
+    {
+      let arr:Array<string>=FormGrp.get(formControlNameTxt)?.value?.split(',');
+      arr?.map((dt:string)=>{
+        let gIndex:number=this.globalValueArr.findIndex((dtM:multiSelectType)=>dtM?.value===dt);
+        this.globalValueArr[gIndex].selected=!this.globalValueArr[gIndex]?.selected;
+      })
+      FormGrp.get(formControlNameTxt)?.setValue(this.globalValueArr?.filter((dt: multiSelectType) => dt.selected).map((dt: multiSelectType) => dt?.value)?.join(','))
+    }
   }
 }
