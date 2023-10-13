@@ -51,7 +51,6 @@ export class CustMultiSelectFilterComponent implements OnInit {
       this.multiArr[sIndex].selected = !this.multiArr[sIndex].selected;
       FormGrp.get(formControlNameTxt)?.setValue(this.globalValueArr?.filter((dt: multiSelectType) => dt.selected).map((dt: multiSelectType) => dt?.value)?.join(','))
     }
-    console.log(this.globalValueArr)
   }
 
 
@@ -61,8 +60,8 @@ export class CustMultiSelectFilterComponent implements OnInit {
     {
       let arr:Array<string>=FormGrp.get(formControlNameTxt)?.value?.split(',');
       arr?.map((dt:string)=>{
-        let gIndex:number=this.globalValueArr.findIndex((dtM:multiSelectType)=>dtM?.value===dt);
-        this.globalValueArr[gIndex].selected=!this.globalValueArr[gIndex]?.selected;
+        let gIndex:number=this.multiArr.findIndex((dtM:multiSelectType)=>dtM?.value===dt);
+        this.multiArr[gIndex].selected=!this.multiArr[gIndex]?.selected;
       })
       FormGrp.get(formControlNameTxt)?.setValue(this.globalValueArr?.filter((dt: multiSelectType) => dt.selected).map((dt: multiSelectType) => dt?.value)?.join(','))
     }
