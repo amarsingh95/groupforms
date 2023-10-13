@@ -6,6 +6,8 @@ import { CustRadioComponent } from './cust-radio/cust-radio.component';
 import { CustCheckboxComponent } from './cust-checkbox/cust-checkbox.component';
 import { CustDropdownComponent } from './cust-dropdown/cust-dropdown.component';
 import { CustMultiSelectFilterComponent } from './cust-multi-select-filter/cust-multi-select-filter.component';
+import { CustOtpTypeComponent } from './cust-otp-type/cust-otp-type.component';
+import { OnlynumberDirective } from '../onlynumber.directive';
 
 
 
@@ -15,13 +17,15 @@ import { CustMultiSelectFilterComponent } from './cust-multi-select-filter/cust-
     CustRadioComponent,
     CustCheckboxComponent,
     CustDropdownComponent,
-    CustMultiSelectFilterComponent
+    CustMultiSelectFilterComponent,
+    CustOtpTypeComponent,
+    OnlynumberDirective
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
     FormsModule
   ],
-  exports:[CustTextComponent,CustRadioComponent,CustCheckboxComponent,CustDropdownComponent,CustMultiSelectFilterComponent]
+  exports:[CustTextComponent,CustRadioComponent,CustCheckboxComponent,CustDropdownComponent,CustMultiSelectFilterComponent,CustOtpTypeComponent]
 })
 export class FormElementsModule { }
