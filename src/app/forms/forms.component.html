@@ -80,7 +80,8 @@
                                     <app-cust-multi-select-filter [FormGropText]="s" [FromControlNameText]="'topics'"
                                         [styleText]="s?.get('topics')?.touched?getFormValidity(s,'topics','required',false)?'form-control is-invalid':'form-control is-valid':'form-control'"
                                         [inputValidity]="getFormValidity(s,'topics','required',false)" [errName]="'required'"
-                                        [labelText]="'Topics'"></app-cust-multi-select-filter>
+                                        [labelText]="'Topics'"
+                                        [globalValueArr]="topicArr"></app-cust-multi-select-filter>
                                 </div>
 
 

@@ -1,6 +1,13 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { custRadioValidation } from '../cust-validators/cust-radio.validators';
+
+interface multiSelectType {
+  value: string,
+  text: string,
+  selected: boolean
+}
+
 @Component({
   selector: 'app-forms',
   templateUrl: './forms.component.html',
@@ -20,6 +27,21 @@ export class FormsComponent implements OnInit {
     { text: 'Brazil', value: 'Brazil' },
     { text: 'Japan', value: 'Japan' },
     { text: 'Israel', value: 'Israel' },
+  ]
+
+  topicArr:Array<multiSelectType>=[
+    { value: 'One', text: 'One', selected: false },
+    { value: 'Two', text: 'Two', selected: false },
+    { value: 'Three', text: 'Three', selected: false },
+    { value: 'Four', text: 'Four', selected: false },
+    { value: 'Five', text: 'Five', selected: false },
+    { value: 'Six', text: 'Six', selected: false },
+    { value: 'Seven', text: 'Seven', selected: false },
+    { value: 'Eight', text: 'Eight', selected: false },
+    { value: 'Nine', text: 'Nine', selected: false },
+    { value: 'Ten', text: 'Ten', selected: false },
+    { value: 'Eleven', text: 'Eleven', selected: false },
+    { value: 'Twelve', text: 'Twelve', selected: false },
   ]
 
 
