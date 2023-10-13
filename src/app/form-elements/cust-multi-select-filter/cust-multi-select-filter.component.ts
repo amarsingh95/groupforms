@@ -16,7 +16,7 @@ export class CustMultiSelectFilterComponent implements OnInit {
 
   constructor() { }
   @ViewChild('filterTxt', { static: false }) filtxt: ElementRef<HTMLInputElement> = {} as ElementRef;
-  multiArr: Array<multiSelectType> = [];
+  multiArr: Array<multiSelectType> = [{value: 'One', text: 'One', selected: false}];
   isDropdownActive: boolean = false;
   @Input()FormGropText:any;
   @Input()FromControlNameText:string='';
@@ -33,19 +33,26 @@ export class CustMultiSelectFilterComponent implements OnInit {
     { value: 'Four', text: 'Four', selected: false },
     { value: 'Five', text: 'Five', selected: false },
     { value: 'Six', text: 'Six', selected: false },
+    { value: 'Seven', text: 'Seven', selected: false },
+    { value: 'Eight', text: 'Eight', selected: false },
+    { value: 'Nine', text: 'Nine', selected: false },
+    { value: 'Ten', text: 'Ten', selected: false },
+    { value: 'Eleven', text: 'Eleven', selected: false },
+    { value: 'Twelve', text: 'Twelve', selected: false },
   ]
 
   ngOnInit(): void {
     this.multiArr = this.getMultipleDataArr();
-    this.bindMultipleSelect(this.FormGropText,this.FromControlNameText);
+    // this.bindMultipleSelect(this.FormGropText,this.FromControlNameText);
   }
 
-  filterMultiSelectValue() {
+  filterMultiSelectValue(FormGrp:any,formControlNameTxt:string) {
     if (this.filtxt?.nativeElement?.value !== '') {
       this.multiArr = this.getMultipleDataArr().filter((dt: multiSelectType) => dt?.text.toLowerCase().includes(this.filtxt?.nativeElement?.value.toLowerCase()))
     } else {
       this.multiArr = this.getMultipleDataArr();
     }
+    FormGrp.get(formControlNameTxt)?.setValue(this.globalValueArr?.filter((dt: multiSelectType) => dt.selected).map((dt: multiSelectType) => dt?.value)?.join(','));
   }
 
   getMultipleDataArr(): Array<multiSelectType> {
@@ -57,18 +64,19 @@ export class CustMultiSelectFilterComponent implements OnInit {
     if (selectVal) {
       let sIndex: number = this.multiArr.findIndex((dt: multiSelectType) => dt.value === selectVal);
       this.multiArr[sIndex].selected = !this.multiArr[sIndex].selected;
-      FormGrp.get(formControlNameTxt)?.setValue(this.multiArr?.filter((dt: multiSelectType) => dt.selected).map((dt: multiSelectType) => dt?.value)?.join(','))
+      FormGrp.get(formControlNameTxt)?.setValue(this.globalValueArr?.filter((dt: multiSelectType) => dt.selected).map((dt: multiSelectType) => dt?.value)?.join(','))
     }
+    console.log(this.globalValueArr)
   }
 
 
   bindMultipleSelect(FormGrp:any,formControlNameTxt:string)
   {
-    let arr:Array<string>=FormGrp.get(formControlNameTxt)?.value.split(',');
-    arr.map((dt:string)=>{
-      let gIndex:number=this.multiArr.findIndex((dtM:multiSelectType)=>dtM?.value===dt);
-      this.multiArr[gIndex].selected=!this.multiArr[gIndex].selected;
+    let arr:Array<string>=FormGrp.get(formControlNameTxt)?.value?.split(',');
+    arr?.map((dt:string)=>{
+      let gIndex:number=this.globalValueArr.findIndex((dtM:multiSelectType)=>dtM?.value===dt);
+      this.globalValueArr[gIndex].selected=!this.globalValueArr[gIndex]?.selected;
     })
-    FormGrp.get(formControlNameTxt)?.setValue(this.multiArr?.filter((dt: multiSelectType) => dt.selected).map((dt: multiSelectType) => dt?.value)?.join(','))
+    FormGrp.get(formControlNameTxt)?.setValue(this.globalValueArr?.filter((dt: multiSelectType) => dt.selected).map((dt: multiSelectType) => dt?.value)?.join(','))
   }
 }
