@@ -81,7 +81,7 @@
                                         [styleText]="s?.get('topics')?.touched?getFormValidity(s,'topics','required',false)?'form-control is-invalid':'form-control is-valid':'form-control'"
                                         [inputValidity]="getFormValidity(s,'topics','required',false)" [errName]="'required'"
                                         [labelText]="'Topics'"
-                                        [globalValueArr]="topicArr"></app-cust-multi-select-filter>
+                                        [globalValueArr]="getTopicArr()"></app-cust-multi-select-filter>
                                 </div>
 
 

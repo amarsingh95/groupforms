@@ -29,7 +29,24 @@ export class FormsComponent implements OnInit {
     { text: 'Israel', value: 'Israel' },
   ]
 
-  topicArr:Array<multiSelectType>=[
+  //Three Level Nested dynamic form
+  university: FormGroup = new FormGroup({});
+
+  ngOnInit(): void {
+    this.university = this.fb.group({
+      uname: ['', [Validators.required]],
+      department: this.fb.array([this.createDepartment()])
+    })
+  
+    this.bindingFormData()
+  
+  }
+
+
+
+  getTopicArr():Array<multiSelectType>
+{
+  return [
     { value: 'One', text: 'One', selected: false },
     { value: 'Two', text: 'Two', selected: false },
     { value: 'Three', text: 'Three', selected: false },
@@ -43,21 +60,7 @@ export class FormsComponent implements OnInit {
     { value: 'Eleven', text: 'Eleven', selected: false },
     { value: 'Twelve', text: 'Twelve', selected: false },
   ]
-
-
-  //Three Level Nested dynamic form
-  university: FormGroup = new FormGroup({});
-
-  ngOnInit(): void {
-    this.university = this.fb.group({
-      uname: ['', [Validators.required]],
-      department: this.fb.array([this.createDepartment()])
-    })
-  
-    // this.bindingFormData()
-  
-  }
-
+}
 
   bindingFormData()
   {
@@ -131,7 +134,7 @@ export class FormsComponent implements OnInit {
                 }
               ],
               "country": "India",
-              "topics":"One,Three,Four,Six",
+              "topics":"One,Three,Four,Eleven,Twelve",
               "subject": [
                 {
                   "subname": "Mehcanics"
