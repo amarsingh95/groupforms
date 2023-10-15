@@ -25,31 +25,28 @@ export class CustMultiSelectFilterComponent implements OnInit {
   @Input()inputValidity:boolean=false;
   @Input()labelText:string='';
   @Input()globalValueArr:Array<multiSelectType>=[];
+  tempArr:Array<multiSelectType>=[];
 
   ngOnInit(): void {
-    this.multiArr = this.getMultipleDataArr();
+    this.multiArr = this.globalValueArr;
+    this.tempArr=this.globalValueArr;
     this.bindMultipleSelect(this.FormGropText,this.FromControlNameText);
   }
 
   filterMultiSelectValue(FormGrp:any,formControlNameTxt:string) {
     if (this.filtxt?.nativeElement?.value !== '') {
-      this.multiArr = this.getMultipleDataArr().filter((dt: multiSelectType) => dt?.text.toLowerCase().includes(this.filtxt?.nativeElement?.value.toLowerCase()))
+      this.multiArr = this.tempArr.filter((dt: multiSelectType) => dt?.text.toLowerCase().includes(this.filtxt?.nativeElement?.value.toLowerCase()))
     } else {
-      this.multiArr = this.getMultipleDataArr();
+      this.multiArr = this.tempArr;
     }
-    FormGrp.get(formControlNameTxt)?.setValue(this.globalValueArr?.filter((dt: multiSelectType) => dt.selected).map((dt: multiSelectType) => dt?.value)?.join(','));
+    FormGrp.get(formControlNameTxt)?.setValue(this.tempArr?.filter((dt: multiSelectType) => dt.selected).map((dt: multiSelectType) => dt?.value)?.join(','));
   }
-
-  getMultipleDataArr(): Array<multiSelectType> {
-    return this.globalValueArr;
-  }
-
 
   selectCheckbox(FormGrp:any,formControlNameTxt:string,selectVal: string) {
     if (selectVal) {
       let sIndex: number = this.multiArr.findIndex((dt: multiSelectType) => dt.value === selectVal);
       this.multiArr[sIndex].selected = !this.multiArr[sIndex].selected;
-      FormGrp.get(formControlNameTxt)?.setValue(this.globalValueArr?.filter((dt: multiSelectType) => dt.selected).map((dt: multiSelectType) => dt?.value)?.join(','))
+      FormGrp.get(formControlNameTxt)?.setValue(this.tempArr?.filter((dt: multiSelectType) => dt.selected).map((dt: multiSelectType) => dt?.value)?.join(','))
     }
   }
 
@@ -63,7 +60,7 @@ export class CustMultiSelectFilterComponent implements OnInit {
         let gIndex:number=this.multiArr.findIndex((dtM:multiSelectType)=>dtM?.value===dt);
         this.multiArr[gIndex].selected=!this.multiArr[gIndex]?.selected;
       })
-      FormGrp.get(formControlNameTxt)?.setValue(this.globalValueArr?.filter((dt: multiSelectType) => dt.selected).map((dt: multiSelectType) => dt?.value)?.join(','))
+      FormGrp.get(formControlNameTxt)?.setValue(this.tempArr?.filter((dt: multiSelectType) => dt.selected).map((dt: multiSelectType) => dt?.value)?.join(','))
     }
   }
 }
