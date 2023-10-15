@@ -38,7 +38,7 @@ export class FormsComponent implements OnInit {
       department: this.fb.array([this.createDepartment()])
     })
   
-    // this.bindingFormData()
+    this.bindingFormData();
   
   }
 
@@ -134,7 +134,7 @@ export class FormsComponent implements OnInit {
                 }
               ],
               "country": "India",
-              "topics":"One,Three,Four,Eleven,Twelve",
+              "topics":"Eleven,Twelve",
               "subject": [
                 {
                   "subname": "Mehcanics"
