@@ -13,7 +13,7 @@ interface otpValType{
 export class CustOtpTypeComponent implements OnInit {
 
   constructor() { }
-otpArr:Array<otpValType>=[
+  otpArr:Array<otpValType>=[
   {value:'1',text:'1'},
   {value:'2',text:'2'},
   {value:'3',text:'3'},
