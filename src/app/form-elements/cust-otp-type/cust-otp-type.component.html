@@ -1,7 +1,7 @@
 <div>
     <label>OTP</label>
     <ng-container *ngFor="let opt of otpArr;let optIndex=index;">
-        <input type="text" #child class="form-control"  style="width: 50px;display: unset !important;margin: 0px 10px 0px 10px;" maxlength="1"  (keyup)="changeKeyUp($event,child,optIndex,otpArr.length)" appOnlynumber>
+        <input type="text" inputmode="numeric" #child class="form-control"  style="width: 50px;display: unset !important;margin: 0px 10px 0px 10px;" maxlength="1"  (keyup)="changeKeyUp($event,child,optIndex,otpArr.length)" appOnlynumber>
     </ng-container>
 </div>
 
