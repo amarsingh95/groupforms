@@ -1,10 +1,8 @@
 <div>
     <label>OTP</label>
-    <input type="text" #otp1 class="form-control"  style="width: 50px;display: unset !important;margin: 0px 10px 0px 10px;" maxlength="1" (keyup)="changeOpt1()" inputmode="numeric" appOnlynumber/>
-
-    <input type="text" #otp2 class="form-control" style="width: 50px;display: unset !important;margin: 0px 10px 0px 10px;" maxlength="1"  (keyup)="changeOpt2()" inputmode="numeric" appOnlynumber/>
-
-    <input type="text" #otp3 class="form-control" style="width: 50px;display: unset !important;margin: 0px 10px 0px 10px;" maxlength="1"  (keyup)="changeOpt3()" inputmode="numeric" appOnlynumber/>
-
-    <input type="text" #otp4 class="form-control" style="width: 50px;display: unset !important;margin: 0px 10px 0px 10px;" maxlength="1"  (keyup)="changeOpt4()" inputmode="numeric" appOnlynumber/>
+    <ng-container *ngFor="let opt of otpArr;let optIndex=index;">
+        <input type="text" #child class="form-control"  style="width: 50px;display: unset !important;margin: 0px 10px 0px 10px;" maxlength="1"  (keyup)="changeKeyUp($event,child,optIndex,otpArr.length)" appOnlynumber>
+    </ng-container>
 </div>
+
+
