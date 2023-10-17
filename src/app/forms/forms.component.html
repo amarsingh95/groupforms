@@ -90,7 +90,8 @@
                                    [labelText]="'OTP'"
                                    [styleText]="this.getOptBoxtouched(s,'otp')?s.get('otp')?.hasError('emptyOptVal')?'form-control is-invalid':'form-control is-valid':'form-control'"
                                    [inputValidity]="s.get('otp')?.hasError('emptyOptVal')?true:false"
-                                  [touchedValidity]="this.getOptBoxtouched(s,'otp')">
+                                   [touchedValidity]="this.getOptBoxtouched(s,'otp')"
+                                   [errName]="'required'">
                                    </app-cust-otp-type>
                                 </div>
 
