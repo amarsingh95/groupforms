@@ -140,23 +140,23 @@ export class FormsComponent implements OnInit {
               "topics":"One,Three,Four,Six,Two",
               "otp": [
                 {
-                  "value": "1",
-                  "text": '2',
-                  "touched": true
-                },
-                {
-                  "value": "2",
                   "text": '1',
+                  "value": "4",
                   "touched": true
                 },
                 {
-                  "value": "3",
-                  "text": '5',
+                  "text": '2',
+                  "value": "1",
+                  "touched": true
+                },
+                {
+                  "text": '3',
+                  "value": "8",
                   "touched": true
                 },
                  {
-                  "value": "4",
-                  "text": '7',
+                  "text": '4',
+                  "value": "6",
                   "touched": true
                 }
               ],
@@ -203,23 +203,23 @@ export class FormsComponent implements OnInit {
               "topics":"Eleven,Twelve",
               "otp": [
                 {
-                  "value": "1",
-                  "text": '4',
-                  "touched": true
-                },
-                {
-                  "value": "2",
-                  "text": '5',
-                  "touched": true
-                },
-                {
+                  "text": '1',
                   "value": "3",
-                  "text": '7',
+                  "touched": true
+                },
+                {
+                  "text": '2',
+                  "value": "8",
+                  "touched": true
+                },
+                {
+                  "text": '3',
+                  "value": "5",
                   "touched": true
                 },
                  {
-                  "value": "4",
-                  "text": '9',
+                  "text": '4',
+                  "value": "1",
                   "touched": true
                 }
               ],
@@ -257,6 +257,8 @@ export class FormsComponent implements OnInit {
 
     this.university.setValue(data);
     this.setValidatorsTouchedSaveC('language');
+    this.setValidatorsTouchedSaveC('otp');
+    this.university.markAllAsTouched();
   }
 
   get department() {
