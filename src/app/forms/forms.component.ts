@@ -2,11 +2,47 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { custRadioValidation } from '../cust-validators/cust-radio.validators';
 
-interface multiSelectType {
+type multiSelectType={
   value: string,
   text: string,
   selected: boolean
 }
+
+
+type University=
+{
+  uname:string,
+  department:Department[]
+}
+type Department={
+  dname:string,
+  students:Student[]
+}
+
+type Student={
+  firstname:string,
+  lastname:string,
+  email:string,
+  gender:string,
+  country:string,
+  topics:string,
+  language:Language[],
+  subject:Subject[]
+}
+
+type Subject ={
+  subname:string 
+}
+
+type Language={
+    value:string,
+    selected:boolean,
+    touched:boolean
+}
+
+
+
+
 
 @Component({
   selector: 'app-forms',
@@ -64,7 +100,7 @@ export class FormsComponent implements OnInit {
 
   bindingFormData()
   {
-    let data = {
+    let data:University = {
       "uname": "Pune University",
       "department": [
         {
@@ -148,17 +184,17 @@ export class FormsComponent implements OnInit {
 
 
 
-    data?.department?.map((dt:any,dtIndex:number)=>{
+    data?.department?.map((dt:Department,dtIndex:number)=>{
       if(dtIndex!==0)
       {
         this.addDepartment();
       }
-      dt?.students?.map((ds:any,dsIndex:number)=>{
+      dt?.students?.map((ds:Student,dsIndex:number)=>{
        if(dsIndex!==0)
        {
         this.addStudent(dtIndex);
        } 
-        ds?.subject?.map((dsub:any,dsubIndex:number)=>{
+        ds?.subject?.map((dsub:Subject,dsubIndex:number)=>{
           if(dsubIndex!==0)
           {
             this.addSubjects(dtIndex,dsIndex)
