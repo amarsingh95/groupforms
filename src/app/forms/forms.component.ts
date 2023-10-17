@@ -132,7 +132,7 @@ export class FormsComponent implements OnInit {
                 },
                 {
                   "value": "English",
-                  "selected": true,
+                  "selected": false,
                   "touched": true
                 }
               ],
