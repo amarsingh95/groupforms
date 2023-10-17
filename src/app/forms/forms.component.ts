@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { custRadioValidation } from '../cust-validators/cust-radio.validators';
+import { custOptValidation } from '../cust-validators/cust-otp.validators';
 
 type multiSelectType={
   value: string,
@@ -41,6 +42,12 @@ type Language={
 }
 
 
+type otpValType={
+  value:string,
+  text:string,
+  touched:boolean 
+ }
+
 
 
 
@@ -74,7 +81,7 @@ export class FormsComponent implements OnInit {
       department: this.fb.array([this.createDepartment()])
     })
   
-    this.bindingFormData();
+    // this.bindingFormData();
   
   }
 
@@ -204,7 +211,7 @@ export class FormsComponent implements OnInit {
     })
 
     this.university.setValue(data);
-    this.getMarkedFormWithCheck();
+    this.setValidatorsTouchedSaveC('language');
   }
 
   get department() {
@@ -229,6 +236,11 @@ export class FormsComponent implements OnInit {
         { value: 'Marathi', selected: false, touched: false },
         { value: 'English', selected: false, touched: false }], [Validators.required, custRadioValidation]],
       country: ['', [Validators.required]],
+      otp:[[
+      {text:'1',value:'',touched:false},
+      {text:'2',value:'',touched:false},
+      {text:'3',value:'',touched:false},
+      {text:'4',value:'',touched:false}],[Validators.required,custOptValidation]],
       topics:['',[Validators.required]],
       subject: this.fb.array([this.createSubjects()])
     })
@@ -296,11 +308,11 @@ export class FormsComponent implements OnInit {
   }
 
 
-  getChkBoxtounchedControlsC(FormGrp: any, formControlName: string) {
+  getChkBoxtounchedControlsC(FormGrp: any, formControlName: string):boolean {
     return FormGrp.get(formControlName)?.value?.every((dt: any) => dt?.touched)
   }
 
-  setChkValidatorsTouchedSaveC(formControlTxtName: string) {
+  setValidatorsTouchedSaveC(formControlTxtName: string) {
     this.department.controls?.map((dt: any, di: number) => {
       dt?.controls?.students?.controls?.map((dts: any, dtsI: number) => {
         let arr: Array<any> = dts?.get(formControlTxtName)?.value;
@@ -312,19 +324,37 @@ export class FormsComponent implements OnInit {
     })
   }
 
-
-  getMarkedFormWithCheck()
+  getOptBoxtouched(FormGrp: any, formControlName: string):boolean
   {
-    this.university.markAllAsTouched();
-    this.setChkValidatorsTouchedSaveC('language');
+    return  FormGrp?.get(formControlName)?.value?.every((dt:otpValType)=>dt?.touched);
   }
 
-  saveUniversity() {
+  setOtpValidatorsTouchedSaveC(formControlTxtName: string) {
+    this.department.controls?.map((dt: any, di: number) => {
+      dt?.controls?.students?.controls?.map((dts: any, dtsI: number) => {
+        let arr: Array<any> = dts?.get(formControlTxtName)?.value;
+        arr?.map((dd: any) => {
+          Object.assign(dd, { touched: true })
+        })
+        dts?.get(formControlTxtName).setValue(arr);
+      })
+    })
+  }
 
+  getMarkedFromWithOtp()
+  {
+    
+  }
+
+
+  saveUniversity() {
     console.log(this.university)
       console.log(this.university?.value)
     if (this.university.invalid) {
-      this.getMarkedFormWithCheck()
+      this.university.markAllAsTouched();
+      this.setValidatorsTouchedSaveC('language');
+      this.setValidatorsTouchedSaveC('otp');
+
     } else {
       // console.log(this.university)
       // console.log(this.university?.value)

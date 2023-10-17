@@ -85,7 +85,12 @@
                                 </div>
 
                                 <div class="col-md-12 mt-3">
-                                   <app-cust-otp-type>
+                                   <app-cust-otp-type 
+                                   [FormGropText]="s" [FromControlNameText]="'otp'"
+                                   [labelText]="'OTP'"
+                                   [styleText]="this.getOptBoxtouched(s,'otp')?s.get('otp')?.hasError('emptyOptVal')?'form-control is-invalid':'form-control is-valid':'form-control'"
+                                   [inputValidity]="s.get('otp')?.hasError('emptyOptVal')?true:false"
+                                  [touchedValidity]="this.getOptBoxtouched(s,'otp')">
                                    </app-cust-otp-type>
                                 </div>
 
