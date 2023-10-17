@@ -1,7 +1,7 @@
 <div [formGroup]="FormGropText">
     <label>{{labelText}}</label>
     <ng-container *ngFor="let otp of FormGropText.get(FromControlNameText)?.value;let optIndex=index;">
-        <input type="text" inputmode="numeric" #child [class]="styleText+' cust-otp-style'" maxlength="1"  (keyup)="changeKeyUp($event,child,optIndex,FormGropText.get(FromControlNameText)?.value.length,FormGropText,FromControlNameText)" (focus)="onFocus(FormGropText,FromControlNameText,optIndex,child)" appOnlynumber/>
+        <input type="text" inputmode="numeric" #child [class]="styleText+' cust-otp-style'" maxlength="1"  (keyup)="changeKeyUp($event,child,optIndex,FormGropText.get(FromControlNameText)?.value.length,FormGropText,FromControlNameText)" (focus)="onFocus(FormGropText,FromControlNameText,optIndex,child)"  [value]="otp?.value" appOnlynumber/>
     </ng-container>
 
     <ng-container *ngIf="this.touchedValidity">
