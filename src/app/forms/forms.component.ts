@@ -82,7 +82,7 @@ export class FormsComponent implements OnInit {
       department: this.fb.array([this.createDepartment()])
     })
   
-    // this.bindingFormData();
+    this.bindingFormData();
   
   }
 
