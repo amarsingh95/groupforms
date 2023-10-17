@@ -3,6 +3,21 @@
     <ng-container *ngFor="let otp of FormGropText.get(FromControlNameText)?.value;let optIndex=index;">
         <input type="text" inputmode="numeric" #child [class]="styleText+' cust-otp-style'" maxlength="1"  (keyup)="changeKeyUp($event,child,optIndex,FormGropText.get(FromControlNameText)?.value.length,FormGropText,FromControlNameText)" (focus)="onFocus(FormGropText,FromControlNameText,optIndex,child)" appOnlynumber/>
     </ng-container>
+
+    <ng-container *ngIf="this.touchedValidity">
+        <ng-container *ngIf="inputValidity">
+          <div class="invalid-feedback">
+            {{errName}}
+          </div>
+        </ng-container>
+      </ng-container>
+    
+    
+      <ng-container *ngIf="!inputValidity">
+        <div class="valid-feedback">
+          Appropriate
+        </div>
+      </ng-container>
 </div>
 
 
