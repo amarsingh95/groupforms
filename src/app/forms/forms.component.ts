@@ -29,6 +29,7 @@ type Student={
   topics:string,
   language:Language[],
   subject:Subject[]
+  otp:otpValType[]
 }
 
 type Subject ={
@@ -137,6 +138,28 @@ export class FormsComponent implements OnInit {
               ],
               "country": "USA",
               "topics":"One,Three,Four,Six,Two",
+              "otp": [
+                {
+                  "value": "1",
+                  "text": '2',
+                  "touched": true
+                },
+                {
+                  "value": "2",
+                  "text": '1',
+                  "touched": true
+                },
+                {
+                  "value": "3",
+                  "text": '5',
+                  "touched": true
+                },
+                 {
+                  "value": "4",
+                  "text": '7',
+                  "touched": true
+                }
+              ],
               "subject": [
                 {
                   "subname": "Cybersecurity"
@@ -178,6 +201,28 @@ export class FormsComponent implements OnInit {
               ],
               "country": "India",
               "topics":"Eleven,Twelve",
+              "otp": [
+                {
+                  "value": "1",
+                  "text": '4',
+                  "touched": true
+                },
+                {
+                  "value": "2",
+                  "text": '5',
+                  "touched": true
+                },
+                {
+                  "value": "3",
+                  "text": '7',
+                  "touched": true
+                },
+                 {
+                  "value": "4",
+                  "text": '9',
+                  "touched": true
+                }
+              ],
               "subject": [
                 {
                   "subname": "Mehcanics"
