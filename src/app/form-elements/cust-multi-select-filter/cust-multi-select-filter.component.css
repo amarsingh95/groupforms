@@ -1,0 +1,21 @@
+.multi-drop-down{
+padding:5px;
+box-shadow: inset;
+position: absolute;
+}
+.multi-drop-down>.form-check:hover
+{
+    cursor: pointer !important;
+    background-color: #f8f9fa!important
+}
+
+.multi-drop-down>.form-check>.form-check-input,.form-check-label
+{
+    cursor: pointer !important;
+}
+
+
+
+
+
+
