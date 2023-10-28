@@ -1,7 +1,9 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { custRadioValidation } from '../cust-validators/cust-radio.validators';
 import { custOptValidation } from '../cust-validators/cust-otp.validators';
+import { ServicesService } from '../services.service';
+import { lastValueFrom } from 'rxjs';
 
 type multiSelectType={
   value: string,
@@ -42,7 +44,6 @@ type Language={
     touched:boolean
 }
 
-
 type otpValType={
   value:string,
   text:string,
@@ -55,12 +56,11 @@ type otpValType={
 @Component({
   selector: 'app-forms',
   templateUrl: './forms.component.html',
-  styleUrls: ['./forms.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./forms.component.css']
 })
 export class FormsComponent implements OnInit {
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder,private service:ServicesService) { }
 
   genderArr: Array<string> = ['Male', 'Female', 'Others'];
   countryArr: Array<{ text: string, value: string }> = [
@@ -106,135 +106,10 @@ export class FormsComponent implements OnInit {
   ]
 }
 
-  bindingFormData()
+  async bindingFormData()
   {
-    let data:University = {
-      "uname": "Pune University",
-      "department": [
-        {
-          "dname": "Information Technology",
-          "students": [
-            {
-              "firstname": "Amar",
-              "lastname": "Singh",
-              "email": "amarsinf23@esd.com",
-              "gender": "Male",
-              "language": [
-                {
-                  "value": "Hindi",
-                  "selected": true,
-                  "touched": true
-                },
-                {
-                  "value": "Marathi",
-                  "selected": true,
-                  "touched": true
-                },
-                {
-                  "value": "English",
-                  "selected": false,
-                  "touched": true
-                }
-              ],
-              "country": "USA",
-              "topics":"One,Three,Four,Six,Two",
-              "otp": [
-                {
-                  "text": '1',
-                  "value": "4",
-                  "touched": true
-                },
-                {
-                  "text": '2',
-                  "value": "1",
-                  "touched": true
-                },
-                {
-                  "text": '3',
-                  "value": "8",
-                  "touched": true
-                },
-                 {
-                  "text": '4',
-                  "value": "6",
-                  "touched": true
-                }
-              ],
-              "subject": [
-                {
-                  "subname": "Cybersecurity"
-                },
-                {
-                  "subname": "Data Structure"
-                },
-                {
-                  "subname": "Graphics"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "dname": "Mumbai",
-          "students": [
-            {
-              "firstname": "Alakh",
-              "lastname": "Singh",
-              "email": "alakh12@sadas.com",
-              "gender": "Male",
-              "language": [
-                {
-                  "value": "Hindi",
-                  "selected": false,
-                  "touched": true
-                },
-                {
-                  "value": "Marathi",
-                  "selected": false,
-                  "touched": true
-                },
-                {
-                  "value": "English",
-                  "selected": true,
-                  "touched": true
-                }
-              ],
-              "country": "India",
-              "topics":"Eleven,Twelve",
-              "otp": [
-                {
-                  "text": '1',
-                  "value": "3",
-                  "touched": true
-                },
-                {
-                  "text": '2',
-                  "value": "8",
-                  "touched": true
-                },
-                {
-                  "text": '3',
-                  "value": "5",
-                  "touched": true
-                },
-                 {
-                  "text": '4',
-                  "value": "1",
-                  "touched": true
-                }
-              ],
-              "subject": [
-                {
-                  "subname": "Mehcanics"
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    }
 
-
+    let data:University = await lastValueFrom(this.service.getUniversityStudentsInfo())
 
     data?.department?.map((dt:Department,dtIndex:number)=>{
       if(dtIndex!==0)
