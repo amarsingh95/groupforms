@@ -1,11 +1,17 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import {HttpClientModule} from '@angular/common/http';
+import { ReactiveFormsModule,FormsModule }   from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsComponent } from './forms/forms.component';
-import { ReactiveFormsModule,FormsModule }   from '@angular/forms';
+
 import { FormElementsModule } from './form-elements/form-elements.module';
+import { ServicesService } from './services.service';
+
+
+
 
 @NgModule({
   declarations: [
@@ -14,12 +20,13 @@ import { FormElementsModule } from './form-elements/form-elements.module';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    FormElementsModule
+    FormElementsModule,
   ],
-  providers: [],
+  providers: [ServicesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
