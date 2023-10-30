@@ -149,8 +149,8 @@ export class FormsComponent implements OnInit {
 
   createStudent() {
     return this.fb.group({
-      firstname: ['', [Validators.required, Validators.maxLength(10),Validators.pattern(/^[A-Za-z]+$/)]],
-      lastname: ['', [Validators.required]],
+      firstname: ['', [Validators.required, Validators.maxLength(45),Validators.pattern(/^[A-Za-z]+$/)]],
+      lastname: ['', [Validators.required,Validators.maxLength(45),Validators.pattern(/^[A-Za-z]+$/)]],
       email: ['', [Validators.required,Validators.email]],
       gender: ['', [Validators.required]],
       language: [[
