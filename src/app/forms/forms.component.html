@@ -28,7 +28,7 @@
                                         [FromControlNameText]="'firstname'"
                                         [styleText]="s?.get('firstname')?.touched?getFormValidity(s,'firstname','required',false)?'form-control is-invalid':'form-control is-valid':'form-control'"
                                         [inputValidity]="getFormValidity(s,'firstname','required',false)"
-                                        [errName]="'required'" [labelText]="'First Name'">
+                                        [errName]="getTxtErrorType(s,'firstname')" [labelText]="'First Name'">
                                     </app-cust-text>
                                 </div>
 

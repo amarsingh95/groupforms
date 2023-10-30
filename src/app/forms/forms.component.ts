@@ -149,7 +149,7 @@ export class FormsComponent implements OnInit {
 
   createStudent() {
     return this.fb.group({
-      firstname: ['', [Validators.required, Validators.maxLength(10)]],
+      firstname: ['', [Validators.required, Validators.maxLength(10),Validators.pattern(/^[A-Za-z]+$/)]],
       lastname: ['', [Validators.required]],
       email: ['', [Validators.required]],
       gender: ['', [Validators.required]],
@@ -220,13 +220,36 @@ export class FormsComponent implements OnInit {
   }
 
   hasError(FormGrp: any, formControlNameTxt: string, errName: string) {
-    if (FormGrp.get(formControlNameTxt).hasError(errName))
+    // if (FormGrp.get(formControlNameTxt).hasError(errName))
+    if (FormGrp.get(formControlNameTxt).error!==null)
       return true
     return false
   }
 
   getFormValidity(FormGrp: any, formControlNameTxt: string, errName: string, chkType: boolean) {
     return this.validateControls(FormGrp, formControlNameTxt) && this.hasError(FormGrp, formControlNameTxt, errName)
+  }
+
+  getTxtErrorType(FormGrp: any, formControlNameTxt: string)
+  {
+    let err:string=FormGrp.get(formControlNameTxt).errors!==null?Object.keys(FormGrp.get(formControlNameTxt).errors)[0]:'Appropriate';
+    return this.getExactErrorName(err);
+  }
+
+  getExactErrorName(err:string):string
+  {
+    let errorName:string=err;
+    switch(errorName)
+    {
+      case 'required':errorName='Field is Mandatory'
+      break;
+      case 'maxlength':errorName='Exceeds Number of Character'
+      break;
+      case 'pattern':errorName='Please Enter Valid Pattern'
+      break;
+      default:
+    }
+    return errorName;
   }
 
 
