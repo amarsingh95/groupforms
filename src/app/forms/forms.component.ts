@@ -151,7 +151,7 @@ export class FormsComponent implements OnInit {
     return this.fb.group({
       firstname: ['', [Validators.required, Validators.maxLength(10),Validators.pattern(/^[A-Za-z]+$/)]],
       lastname: ['', [Validators.required]],
-      email: ['', [Validators.required]],
+      email: ['', [Validators.required,Validators.email]],
       gender: ['', [Validators.required]],
       language: [[
         { value: 'Hindi', selected: false, touched: false },
@@ -246,6 +246,8 @@ export class FormsComponent implements OnInit {
       case 'maxlength':errorName='Exceeds Number of Character'
       break;
       case 'pattern':errorName='Please Enter Valid Pattern'
+      break;
+      case 'email':errorName='Please Enter Email Address'
       break;
       default:
     }
