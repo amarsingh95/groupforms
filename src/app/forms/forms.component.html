@@ -5,7 +5,7 @@
                 <app-cust-text [maxTextLength]="45"
                     [styleText]="university.get('uname')?.touched?getFormValidity(university,'uname','required',false)?'form-control is-invalid':'form-control is-valid':'form-control'"
                     [FormGropText]="university" [FromControlNameText]="'uname'"
-                    [inputValidity]="getFormValidity(university,'uname','required',false)" [errName]="'required'"
+                    [inputValidity]="getFormValidity(university,'uname','required',false)" [errName]="getTxtErrorType(university,'uname')"
                     [labelText]="'University Name'"></app-cust-text>
 
             </div>
@@ -15,7 +15,7 @@
                     <div class="col-md-6 mt-3">
                         <app-cust-text [maxTextLength]="45" [FormGropText]="depart" [FromControlNameText]="'dname'"
                             [styleText]="depart?.get('dname')?.touched?getFormValidity(depart,'dname','required',false)?'form-control is-invalid':'form-control is-valid':'form-control'"
-                            [inputValidity]="getFormValidity(depart,'dname','required',false)" [errName]="'required'"
+                            [inputValidity]="getFormValidity(depart,'dname','required',false)" [errName]="getTxtErrorType(depart,'dname')"
                             [labelText]="'Department'"></app-cust-text>
 
                         <div class="col-md-12 mt-3"></div>
@@ -37,7 +37,7 @@
                                         [FromControlNameText]="'lastname'"
                                         [styleText]="s?.get('lastname')?.touched?getFormValidity(s,'lastname','required',false)?'form-control is-invalid':'form-control is-valid':'form-control'"
                                         [inputValidity]="getFormValidity(s,'lastname','required',false)"
-                                        [errName]="'required'" [labelText]="'Last Name'"></app-cust-text>
+                                        [errName]="getTxtErrorType(s,'lastname')" [labelText]="'Last Name'"></app-cust-text>
                                 </div>
 
                                 <div class="col-md-3">
@@ -45,7 +45,7 @@
                                         [FromControlNameText]="'email'"
                                         [styleText]="s?.get('email')?.touched?getFormValidity(s,'email','required',false)?'form-control is-invalid':'form-control is-valid':'form-control'"
                                         [inputValidity]="getFormValidity(s,'email','required',false)"
-                                        [errName]="'required'" [labelText]="'Email'"></app-cust-text>
+                                        [errName]="getTxtErrorType(s,'email')" [labelText]="'Email'"></app-cust-text>
                                 </div>
 
 
@@ -108,7 +108,7 @@
                                                 [FromControlNameText]="'subname'"
                                                 [styleText]="sub.get('subname')?.touched?getFormValidity(sub,'subname','required',false)?'form-control is-invalid':'form-control is-valid':'form-control'"
                                                 [inputValidity]="getFormValidity(sub,'subname','required',false)"
-                                                [errName]="'required'" [labelText]="'Subject'"></app-cust-text>
+                                                [errName]="getTxtErrorType(sub,'subname')" [labelText]="'Subject'"></app-cust-text>
                                         </div>
 
                                         <div class="col-md-3 mt-3">
