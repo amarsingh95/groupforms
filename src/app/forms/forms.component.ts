@@ -249,6 +249,8 @@ export class FormsComponent implements OnInit {
       break;
       case 'email':errorName='Please Enter Email Address'
       break;
+      case 'selectCheckbox':errorName='Please Select Atleast One Checkbox'
+      break;
       default:
     }
     return errorName;

@@ -61,7 +61,7 @@
                                 <div class="col-md-12 mt-3">
                                     <app-cust-checkbox [FormGropText]="s" [FromControlNameText]="'language'"
                                         [styleText]="this.getChkBoxtounchedControlsC(s,'language')?s.get('language')?.hasError('selectCheckbox')?'form-check-input is-invalid':'form-check-input is-valid':'form-check-input'"
-                                        [errName]="'required'" [valProp]="'value'" [touchedProp]="'touched'"
+                                        [errName]="getTxtErrorType(s,'language')" [valProp]="'value'" [touchedProp]="'touched'"
                                         [selectProp]="'selected'"
                                         [inputValidity]="s.get('language')?.hasError('selectCheckbox')?true:false"
                                         [touchedValidity]="this.getChkBoxtounchedControlsC(s,'language')"></app-cust-checkbox>
