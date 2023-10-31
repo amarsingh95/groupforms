@@ -31,8 +31,7 @@ export class CustMultiSelectFilterComponent implements OnInit{
   async ngOnInit(){
     this.multiArr = this.globalValueArr;
     this.tempArr=this.globalValueArr;
-    this.inputSubject.pipe(debounceTime(1)).subscribe((dt)=>{this.bindMultipleSelect(this.FormGropText,this.FromControlNameText);
-    })
+    this.inputSubject.pipe(debounceTime(1)).subscribe((dt)=>{this.bindMultipleSelect(this.FormGropText,this.FromControlNameText)})
     this.inputSubject.next('');
     
   }
