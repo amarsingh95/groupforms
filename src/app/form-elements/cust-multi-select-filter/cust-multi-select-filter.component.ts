@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, ViewChild, ElementRef,Input} from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, ViewChild, ElementRef,Input,OnChanges, SimpleChanges} from '@angular/core';
 
 
 interface multiSelectType {
@@ -12,7 +12,7 @@ interface multiSelectType {
   styleUrls: ['./cust-multi-select-filter.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CustMultiSelectFilterComponent implements OnInit {
+export class CustMultiSelectFilterComponent implements OnInit{
 
   constructor() { }
   @ViewChild('filterTxt', { static: false }) filtxt: ElementRef<HTMLInputElement> = {} as ElementRef;
@@ -30,7 +30,10 @@ export class CustMultiSelectFilterComponent implements OnInit {
   ngOnInit(): void {
     this.multiArr = this.globalValueArr;
     this.tempArr=this.globalValueArr;
-    this.bindMultipleSelect(this.FormGropText,this.FromControlNameText);
+    setTimeout(()=>{
+      this.bindMultipleSelect(this.FormGropText,this.FromControlNameText);
+    },1000)
+    
   }
 
   filterMultiSelectValue(FormGrp:any,formControlNameTxt:string) {
@@ -53,6 +56,7 @@ export class CustMultiSelectFilterComponent implements OnInit {
 
   bindMultipleSelect(FormGrp:any,formControlNameTxt:string)
   {
+    console.log(FormGrp.get(formControlNameTxt)?.value) 
     if(FormGrp.get(formControlNameTxt)?.value)
     {
       let arr:Array<string>=FormGrp.get(formControlNameTxt)?.value?.split(',');
