@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, ViewChild, ElementRef,Input,OnChanges, SimpleChanges} from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, ViewChild, ElementRef,Input} from '@angular/core';
 
 
 interface multiSelectType {
