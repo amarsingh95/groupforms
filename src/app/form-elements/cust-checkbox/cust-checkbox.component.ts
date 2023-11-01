@@ -1,9 +1,6 @@
 import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
-interface valType {
-  value: string,
-  selected: boolean,
-  touched: boolean
-}
+import {valType} from '../../models/form.model';
+
 @Component({
   selector: 'app-cust-checkbox',
   templateUrl: './cust-checkbox.component.html',
