@@ -1,12 +1,7 @@
-import { Component, OnInit, ChangeDetectionStrategy, ViewChild, ElementRef,Input} from '@angular/core';
-import { Subject, debounceTime, lastValueFrom, of } from 'rxjs';
+import { Component, OnInit, ViewChild, ElementRef,Input} from '@angular/core';
+import { Subject, debounceTime} from 'rxjs';
+import {multiSelectType} from '../../models/form.model';
 
-
-interface multiSelectType {
-  value: string,
-  text: string,
-  selected: boolean
-}
 @Component({
   selector: 'app-cust-multi-select-filter',
   templateUrl: './cust-multi-select-filter.component.html',
