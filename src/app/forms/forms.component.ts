@@ -4,54 +4,7 @@ import { custRadioValidation } from '../cust-validators/cust-radio.validators';
 import { custOptValidation } from '../cust-validators/cust-otp.validators';
 import { ServicesService } from '../services.service';
 import { lastValueFrom } from 'rxjs';
-
-type multiSelectType={
-  value: string,
-  text: string,
-  selected: boolean
-}
-
-
-type University=
-{
-  uname:string,
-  department:Department[]
-}
-type Department={
-  dname:string,
-  students:Student[]
-}
-
-type Student={
-  firstname:string,
-  lastname:string,
-  email:string,
-  gender:string,
-  country:string,
-  topics:string,
-  language:Language[],
-  subject:Subject[]
-  otp:otpValType[]
-}
-
-type Subject ={
-  subname:string 
-}
-
-type Language={
-    value:string,
-    selected:boolean,
-    touched:boolean
-}
-
-type otpValType={
-  value:string,
-  text:string,
-  touched:boolean 
- }
-
-
-
+import {multiSelectType,University,Department,Student,Subject,Language,otpValType} from '../models/form.model';
 
 @Component({
   selector: 'app-forms',
