@@ -1,10 +1,5 @@
 import { Component,OnInit,Input,ChangeDetectionStrategy} from '@angular/core';
-
-type otpValType={
- value:string,
- text:string,
- touched:boolean 
-}
+import { otpValType } from 'src/app/models/form.model';
 
 @Component({
   selector: 'app-cust-otp-type',
