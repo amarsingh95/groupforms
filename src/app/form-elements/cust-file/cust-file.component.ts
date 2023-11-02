@@ -18,12 +18,14 @@ export class CustFileComponent implements OnInit {
   @Input() labelText: string = '';
   @Input() multiple: boolean = false;
   imgSrc: Array<any> = [];
+  imgName:Array<string>=[]
 
   ngOnInit(): void {
 
   }
 
   getFileValue(event: any, checkMulti: boolean) {
+    this.imgName=[];
     if (checkMulti) {
       let file = event.target?.files;
       for (let i = 0; i < file.length; i++) {
@@ -40,6 +42,7 @@ export class CustFileComponent implements OnInit {
   setFileValue(file: File) {
     let formData = new FormData();
     formData.append('files', file);
+    this.imgName.push(file.name);
     this.services.saveFile(formData)
     var reader = new FileReader();
     reader.readAsDataURL(file);

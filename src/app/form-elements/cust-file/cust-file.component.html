@@ -1,8 +1,13 @@
 <div [formGroup]="FormGropText">
-    <label for="formFile" class="form-label">Default file input example</label>
+    <label for="formFile" class="form-label">{{labelText}}</label>
     <input class="form-control" type="file" id="formFile" [formControlName]="FromControlNameText" (change)="getFileValue($event,multiple)" [multiple]="multiple">
-    <ng-container *ngFor="let img of this.imgSrc">
-        <img class="mt-3 img-border" [src]="img"  alt="Image" width="200" height="200"/>
+    <ng-container *ngFor="let img of this.imgSrc;let imgIndex=index;">
+        <div class="card mt-3" style="width: 18rem;">
+            <img [src]="img" class="card-img-top" alt="...">
+            <div class="card-body">
+              <p class="card-text">{{this.imgName[imgIndex]}}</p>
+            </div>
+          </div>
     </ng-container>
     
 </div>
