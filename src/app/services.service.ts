@@ -192,5 +192,12 @@ export class ServicesService {
   }
 
 
+
+  saveFile(formData:any)
+  {
+    console.log(formData.get('files'));
+  }
+
+
   
 }
