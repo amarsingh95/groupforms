@@ -28,9 +28,11 @@ export class CustFileComponent implements OnInit {
     this.imgName=[];
     if (checkMulti) {
       let file = event.target?.files;
-      for (let i = 0; i < file.length; i++) {
-        this.setFileValue(file[i]);
-      }
+      let fileArr:Array<any>=Array.from(file);
+      fileArr.map((dt:any)=>{
+        this.setFileValue(dt);
+      })
+      
     } else {
       let file: File = event.target?.files[0];
       this.setFileValue(file);
