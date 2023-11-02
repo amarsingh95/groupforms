@@ -48,3 +48,12 @@ export type multiSelectType={
     selected: boolean,
     touched: boolean
   }
+
+  export type fileType=
+  {
+    albumId:number,
+    id:number,
+    thumbnailUrl:string,
+    title:string,
+    url:string
+  }
