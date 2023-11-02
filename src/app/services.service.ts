@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {of} from 'rxjs';
+import { of} from 'rxjs';
 
 
 @Injectable({
@@ -196,6 +196,13 @@ export class ServicesService {
   saveFile(formData:any)
   {
     console.log(formData.get('files'));
+  }
+
+
+  getFileImageUrl()
+  {
+    console.log('getPhotos')
+    return this.http.get('https://jsonplaceholder.typicode.com/photos');
   }
 
 
