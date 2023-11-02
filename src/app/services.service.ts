@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { of} from 'rxjs';
+import { Observable, filter, map, of, tap} from 'rxjs';
+import {fileType} from './models/form.model';
 
 
 @Injectable({
@@ -201,8 +202,12 @@ export class ServicesService {
 
   getFileImageUrl()
   {
-    console.log('getPhotos')
-    return this.http.get('https://jsonplaceholder.typicode.com/photos');
+    return this.http.get<fileType[]>('https://jsonplaceholder.typicode.com/photos').
+    pipe(
+      map((dt:fileType[])=>dt?.filter((data:fileType)=>data?.id<10).map((data:fileType)=>data?.thumbnailUrl)),
+      tap((dt=>console.log(dt)))
+     
+    );
   }
 
 
