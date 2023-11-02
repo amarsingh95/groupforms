@@ -35,7 +35,7 @@ export class FormsComponent implements OnInit {
       department: this.fb.array([this.createDepartment()])
     })
   
-    this.bindingFormData();
+    // this.bindingFormData();
   
   }
 
@@ -117,7 +117,8 @@ export class FormsComponent implements OnInit {
       {text:'3',value:'',touched:false},
       {text:'4',value:'',touched:false}],[Validators.required,custOptValidation]],
       topics:['',[Validators.required]],
-      subject: this.fb.array([this.createSubjects()])
+      subject: this.fb.array([this.createSubjects()]),
+      documents:['',[Validators.required]]
     })
   }
 
