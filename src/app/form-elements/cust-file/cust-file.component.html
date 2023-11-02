@@ -1,0 +1,9 @@
+<div [formGroup]="FormGropText">
+    <label for="formFile" class="form-label">Default file input example</label>
+    <input class="form-control" type="file" id="formFile" [formControlName]="FromControlNameText" (change)="getFileValue($event,multiple)" [multiple]="multiple">
+    <ng-container *ngFor="let img of this.imgSrc">
+        <img class="mt-3 img-border" [src]="img"  alt="Image" width="200" height="200"/>
+    </ng-container>
+    
+</div>
+          
