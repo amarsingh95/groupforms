@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ServicesService } from 'src/app/services.service';
+import { lastValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-cust-file',
@@ -19,9 +20,11 @@ export class CustFileComponent implements OnInit {
   @Input() multiple: boolean = false;
   imgSrc: Array<any> = [];
   imgName:Array<string>=[]
+  fileUrlArr:Array<string>=[];
 
-  ngOnInit(): void {
-
+  async ngOnInit(){
+   let fileUrlData:any= await this.getfilUrl();
+   this.fileUrlArr=fileUrlData?.filter((dt:any)=>dt?.id<11).map((dt:any)=>dt?.thumbnailUrl);
   }
 
   getFileValue(event: any, checkMulti: boolean) {
@@ -51,6 +54,16 @@ export class CustFileComponent implements OnInit {
     reader.onload = (_event) => {
       this.imgSrc.push(reader.result);
     }
+  }
+
+  getfilUrl()
+  {
+    return lastValueFrom(this.services.getFileImageUrl())
+  }
+
+
+  getFileNameFromUrl(url:string){
+    return url.split('/').pop();
   }
 
 }

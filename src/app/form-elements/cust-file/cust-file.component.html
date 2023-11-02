@@ -9,6 +9,15 @@
             </div>
           </div>
     </ng-container>
+
+    <ng-container *ngFor="let fileUrl of this.fileUrlArr">
+      <div class="card mt-3" style="width: 18rem;">
+        <img [src]="fileUrl" class="card-img-top" alt="...">
+        <div class="card-body">
+          <p class="card-text">{{this.getFileNameFromUrl(fileUrl)}}</p>
+        </div>
+      </div>
+    </ng-container>
     
 </div>
           
