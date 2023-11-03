@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ChangeDetectionStrategy,ChangeDetectorRef } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { custRadioValidation } from '../cust-validators/cust-radio.validators';
 import { custOptValidation } from '../cust-validators/cust-otp.validators';
@@ -9,11 +9,12 @@ import {multiSelectType,University,Department,Student,Subject,Language,otpValTyp
 @Component({
   selector: 'app-forms',
   templateUrl: './forms.component.html',
-  styleUrls: ['./forms.component.css']
+  styleUrls: ['./forms.component.css'],
+  changeDetection:ChangeDetectionStrategy.OnPush
 })
 export class FormsComponent implements OnInit {
 
-  constructor(private fb: FormBuilder,private service:ServicesService) { }
+  constructor(private fb: FormBuilder,private service:ServicesService,private cdr:ChangeDetectorRef) { }
 
   genderArr: Array<string> = ['Male', 'Female', 'Others'];
   countryArr: Array<{ text: string, value: string }> = [
@@ -35,7 +36,7 @@ export class FormsComponent implements OnInit {
       department: this.fb.array([this.createDepartment()])
     })
   
-    // this.bindingFormData();
+    this.bindingFormData();
   
   }
 
@@ -82,11 +83,13 @@ export class FormsComponent implements OnInit {
         })
       })
     })
+    
 
     this.university.setValue(data);
     this.setValidatorsTouchedSaveC('language');
     this.setValidatorsTouchedSaveC('otp');
     this.university.markAllAsTouched();
+    this.cdr.detectChanges();
   }
 
   get department() {
@@ -118,7 +121,7 @@ export class FormsComponent implements OnInit {
       {text:'4',value:'',touched:false}],[Validators.required,custOptValidation]],
       topics:['',[Validators.required]],
       subject: this.fb.array([this.createSubjects()]),
-      documents:['',[Validators.required]]
+      // documents:['',[Validators.required]]
     })
   }
 
