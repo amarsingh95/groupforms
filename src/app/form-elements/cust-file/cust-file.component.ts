@@ -23,8 +23,7 @@ export class CustFileComponent implements OnInit {
   fileUrlArr:Array<string>=[];
 
   async ngOnInit(){
-   let fileUrlData:any= await this.getfilUrl();
-   this.fileUrlArr=fileUrlData?.filter((dt:any)=>dt?.id<11).map((dt:any)=>dt?.thumbnailUrl);
+    this.fileUrlArr= await this.getfilUrl();
   }
 
   getFileValue(event: any, checkMulti: boolean) {
@@ -63,6 +62,7 @@ export class CustFileComponent implements OnInit {
 
 
   getFileNameFromUrl(url:string){
+    console.log(url)
     return url.split('/').pop();
   }
 
