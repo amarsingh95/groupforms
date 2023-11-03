@@ -9,6 +9,7 @@ import { CustMultiSelectFilterComponent } from './cust-multi-select-filter/cust-
 import { CustOtpTypeComponent } from './cust-otp-type/cust-otp-type.component';
 import { OnlynumberDirective } from '../onlynumber.directive';
 import { CustFileComponent } from './cust-file/cust-file.component';
+import { ImageUrlPipePipe } from './cust-pipe/image-url-pipe.pipe';
 
 
 
@@ -21,7 +22,8 @@ import { CustFileComponent } from './cust-file/cust-file.component';
     CustMultiSelectFilterComponent,
     CustOtpTypeComponent,
     OnlynumberDirective,
-    CustFileComponent
+    CustFileComponent,
+    ImageUrlPipePipe
   ],
   imports: [
     CommonModule,
