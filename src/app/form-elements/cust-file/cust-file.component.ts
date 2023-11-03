@@ -60,10 +60,4 @@ export class CustFileComponent implements OnInit {
     return lastValueFrom(this.services.getFileImageUrl())
   }
 
-
-  getFileNameFromUrl(url:string){
-    console.log(url)
-    return url.split('/').pop();
-  }
-
 }
