@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, filter, map, of, tap} from 'rxjs';
+import { BehaviorSubject, Observable, filter, map, of, tap} from 'rxjs';
 import {fileType} from './models/form.model';
 
 
@@ -10,6 +10,8 @@ import {fileType} from './models/form.model';
 export class ServicesService {
 
   constructor(private http:HttpClient) { }
+  loadingSpinner:BehaviorSubject<boolean>=new BehaviorSubject<boolean>(false);
+  private loadingUrlMap:Map<string,boolean>= new Map<string,boolean>();
 
   getUniversityStudentsInfo()
   {
@@ -206,10 +208,27 @@ export class ServicesService {
     pipe(
       map((dt:fileType[])=>dt?.filter((data:fileType)=>data?.id<10).map((data:fileType)=>data?.thumbnailUrl)),
       tap((dt=>console.log(dt)))
-     
     );
   }
 
 
-  
+  setLoading(url:string,loading:boolean)
+  {
+    if(loading)
+    {
+      this.loadingSpinner.next(true);
+      this.loadingUrlMap.set(url,loading)
+    }else if(!loading && this.loadingUrlMap.has(url))
+    {
+      this.loadingUrlMap.delete(url);
+    }
+    console.log(this.loadingUrlMap)
+    if(this.loadingUrlMap.size===0)
+    {
+      this.loadingSpinner.next(loading)
+    }
+    
+  }
+
+
 }
