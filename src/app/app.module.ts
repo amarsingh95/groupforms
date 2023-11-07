@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClientModule,HTTP_INTERCEPTORS} from '@angular/common/http';
 import { ReactiveFormsModule,FormsModule }   from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -9,6 +9,8 @@ import { FormsComponent } from './forms/forms.component';
 
 import { FormElementsModule } from './form-elements/form-elements.module';
 import { ServicesService } from './services.service';
+import { LoaderInterceptorInterceptor } from './loader-interceptor.interceptor';
+import { LoaderComponent } from './loader/loader.component';
 
 
 
@@ -16,7 +18,8 @@ import { ServicesService } from './services.service';
 @NgModule({
   declarations: [
     AppComponent,
-    FormsComponent
+    FormsComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +29,7 @@ import { ServicesService } from './services.service';
     ReactiveFormsModule,
     FormElementsModule,
   ],
-  providers: [ServicesService],
+  providers: [ServicesService,{provide:HTTP_INTERCEPTORS,useClass:LoaderInterceptorInterceptor,multi:true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
