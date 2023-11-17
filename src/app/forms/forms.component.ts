@@ -3,8 +3,9 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { custRadioValidation } from '../cust-validators/cust-radio.validators';
 import { custOptValidation } from '../cust-validators/cust-otp.validators';
 import { ServicesService } from '../services.service';
-import { lastValueFrom } from 'rxjs';
-import {multiSelectType,University,Department,Student,Subject,Language,otpValType} from '../models/form.model';
+import { forkJoin, lastValueFrom } from 'rxjs';
+import {multiSelectType,University,Department,Student,Subject,otpValType,dropDownList} from '../models/form.model';
+import { CONFIG } from '../_configs/config';
 
 @Component({
   selector: 'app-forms',
@@ -16,28 +17,34 @@ export class FormsComponent implements OnInit {
 
   constructor(private fb: FormBuilder,private service:ServicesService,private cdr:ChangeDetectorRef) { }
 
-  genderArr: Array<string> = ['Male', 'Female', 'Others'];
-  countryArr: Array<{ text: string, value: string }> = [
-    { text: 'India', value: 'India' },
-    { text: 'China', value: 'China' },
-    { text: 'Russia', value: 'Russia' },
-    { text: 'USA', value: 'USA' },
-    { text: 'Brazil', value: 'Brazil' },
-    { text: 'Japan', value: 'Japan' },
-    { text: 'Israel', value: 'Israel' },
-  ]
+  // genderArr: Array<string> = ['Male', 'Female', 'Others'];
+  genderArr: Array<string> = [];
+  countryArr!: Array<dropDownList>;
+  langArr!:Array<any>;
 
   //Three Level Nested dynamic form
   university: FormGroup = new FormGroup({});
 
-  ngOnInit(): void {
+  async ngOnInit(){
     this.university = this.fb.group({
       uname: ['', [Validators.required]],
       department: this.fb.array([this.createDepartment()])
     })
   
-    this.bindingFormData();
+    
   
+   let genArr:any=await this.getMaster(CONFIG.getGender);
+   this.genderArr=genArr.map((dt:any)=>dt?.value)
+
+   let genCountry:any=await this.getMaster(CONFIG.getCountry);
+   this.countryArr=genCountry;   
+
+   let genLan:any=await this.getMaster(CONFIG.getLanguage);
+   this.langArr=genLan;   
+
+   
+   
+   this.bindingFormData();
   }
 
 
@@ -267,5 +274,15 @@ export class FormsComponent implements OnInit {
     }
   }
 
+
+getMaster(endPoint:string)
+{
+return lastValueFrom(this.service.getMaster(endPoint));
+}
+
+getMasterService(endPoint:string)
+{
+return this.service.getMaster(endPoint);
+}
 
 }
