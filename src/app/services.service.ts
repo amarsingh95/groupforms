@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable, filter, map, of, tap} from 'rxjs';
+import { BehaviorSubject,map, of, tap,catchError} from 'rxjs';
 import {fileType} from './models/form.model';
+import { environment } from 'src/environments/environment';
+
 
 
 @Injectable({
@@ -25,7 +27,7 @@ export class ServicesService {
             "firstname": "Amar",
             "lastname": "Singh",
             "email": "amarsinf23@esd.com",
-            "gender": "Male",
+            "gender": "Female",
             "language": [
               {
                 "value": "Hindi",
@@ -204,10 +206,9 @@ export class ServicesService {
 
   getFileImageUrl()
   {
-    return this.http.get<fileType[]>('https://jsonplaceholder.typicode.com/photos').
+    return this.http.get<fileType[]>(environment.IMAGEURL).
     pipe(
-      map((dt:fileType[])=>dt?.filter((data:fileType)=>data?.id<10).map((data:fileType)=>data?.thumbnailUrl)),
-      tap((dt=>console.log(dt)))
+      map((dt:fileType[])=>dt?.filter((data:fileType)=>data?.id<10).map((data:fileType)=>data?.thumbnailUrl))
     );
   }
 
@@ -222,12 +223,16 @@ export class ServicesService {
     {
       this.loadingUrlMap.delete(url);
     }
-    console.log(this.loadingUrlMap)
     if(this.loadingUrlMap.size===0)
     {
       this.loadingSpinner.next(loading)
     }
     
+  }
+
+  getMaster(endpoint:string)
+  {
+    return this.http.get(`${environment.BASEURL}${endpoint}`).pipe(catchError((err)=>of('Some thing when wrong')));
   }
 
 
