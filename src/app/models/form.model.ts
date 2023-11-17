@@ -57,3 +57,11 @@ export type multiSelectType={
     title:string,
     url:string
   }
+
+
+
+  export type dropDownList={
+    value:string,
+    text:string,
+    id?:string
+  }
