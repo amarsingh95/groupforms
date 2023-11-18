@@ -3,4 +3,5 @@ export const CONFIG={
     getCountry:'/country',
     getTopic:'/topic',
     getLanguage:'/language',
+    postUniversity:'/university',
 }
