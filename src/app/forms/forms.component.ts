@@ -3,7 +3,7 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { custRadioValidation } from '../cust-validators/cust-radio.validators';
 import { custOptValidation } from '../cust-validators/cust-otp.validators';
 import { ServicesService } from '../services.service';
-import { forkJoin, lastValueFrom } from 'rxjs';
+import {lastValueFrom,map,tap } from 'rxjs';
 import {multiSelectType,University,Department,Student,Subject,otpValType,dropDownList} from '../models/form.model';
 import { CONFIG } from '../_configs/config';
 
@@ -14,13 +14,21 @@ import { CONFIG } from '../_configs/config';
   changeDetection:ChangeDetectionStrategy.OnPush
 })
 export class FormsComponent implements OnInit {
+// genderArr: Array<string> = ['Male', 'Female', 'Others'];
+genderArr: Array<string> = [];
+countryArr!: Array<dropDownList>;
+langArr!:Array<any>;
+genderObjArr!:Array<any>;
+topicArr!:any;
 
-  constructor(private fb: FormBuilder,private service:ServicesService,private cdr:ChangeDetectorRef) { }
+  constructor(private fb: FormBuilder,private service:ServicesService,private cdr:ChangeDetectorRef) {
+    this.service.getMaster(CONFIG.getGender).subscribe((value)=>{
+      let lan:any=value;
+      this.langArr=lan?.map((dt:any)=>{return Object.assign(dt,{selected: false, touched: false})})
+    })
+  }
 
-  // genderArr: Array<string> = ['Male', 'Female', 'Others'];
-  genderArr: Array<string> = [];
-  countryArr!: Array<dropDownList>;
-  langArr!:Array<any>;
+  
 
   //Three Level Nested dynamic form
   university: FormGroup = new FormGroup({});
@@ -34,37 +42,20 @@ export class FormsComponent implements OnInit {
     
   
    let genArr:any=await this.getMaster(CONFIG.getGender);
+   this.genderObjArr=genArr;
    this.genderArr=genArr.map((dt:any)=>dt?.value)
 
    let genCountry:any=await this.getMaster(CONFIG.getCountry);
    this.countryArr=genCountry;   
-
-   let genLan:any=await this.getMaster(CONFIG.getLanguage);
-   this.langArr=genLan;   
-
-   
    
    this.bindingFormData();
   }
 
 
 
-  getTopicArr():Array<multiSelectType>
+ getTopicArr()
 {
-  return [
-    { value: 'One', text: 'One', selected: false },
-    { value: 'Two', text: 'Two', selected: false },
-    { value: 'Three', text: 'Three', selected: false },
-    { value: 'Four', text: 'Four', selected: false },
-    { value: 'Five', text: 'Five', selected: false },
-    { value: 'Six', text: 'Six', selected: false },
-    { value: 'Seven', text: 'Seven', selected: false },
-    { value: 'Eight', text: 'Eight', selected: false },
-    { value: 'Nine', text: 'Nine', selected: false },
-    { value: 'Ten', text: 'Ten', selected: false },
-    { value: 'Eleven', text: 'Eleven', selected: false },
-    { value: 'Twelve', text: 'Twelve', selected: false },
-  ]
+  return this.getMasterTopic(CONFIG.getTopic);
 }
 
   async bindingFormData()
@@ -97,6 +88,7 @@ export class FormsComponent implements OnInit {
     this.setValidatorsTouchedSaveC('otp');
     this.university.markAllAsTouched();
     this.cdr.detectChanges();
+    
   }
 
   get department() {
@@ -267,8 +259,21 @@ export class FormsComponent implements OnInit {
       this.university.markAllAsTouched();
       this.setValidatorsTouchedSaveC('language');
       this.setValidatorsTouchedSaveC('otp');
-
     } else {
+
+      let data=this.university?.value;
+      
+      data.department.map((dt:any)=>{
+        dt.students?.map((studDt:any)=>{
+          Object.assign(studDt,{
+            country:this.getValueDDl(this.countryArr,studDt.country)?.id,
+            gender:this.getValueDDl(this.genderObjArr,studDt.gender)?.id
+          })
+        })
+      })
+      this.service.postData(CONFIG.postUniversity,this.university.value).subscribe((value)=>{
+        console.log(value);
+      });
       // console.log(this.university)
       // console.log(this.university?.value)
     }
@@ -282,7 +287,19 @@ return lastValueFrom(this.service.getMaster(endPoint));
 
 getMasterService(endPoint:string)
 {
-return this.service.getMaster(endPoint);
+return this.service.getMaster(endPoint).pipe(tap(val=>console.log(val)));
+}
+
+getMasterTopic(endPoint:string)
+{
+return lastValueFrom(this.service.getMaster(endPoint).pipe(map((data:any)=>{return data?.map((dt:any)=>{return {value:dt?.value,text:dt?.value,selected:false,id:dt?.id}})}),tap(val=>console.log(val))));
+}
+
+getValueDDl(ddArr:Array<any>,value:string)
+{
+  console.log(ddArr);
+  let postIndex=ddArr.findIndex((dt:any)=>dt?.value===value);
+  return ddArr[postIndex];
 }
 
 }
