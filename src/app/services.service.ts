@@ -142,7 +142,7 @@ export class ServicesService {
             "firstname": "Anaal",
             "lastname": "Singh",
             "email": "anaal12@sadas.com",
-            "gender": "Male",
+            "gender": "Others",
             "language": [
               {
                 "value": "Hindi",
@@ -233,6 +233,12 @@ export class ServicesService {
   getMaster(endpoint:string)
   {
     return this.http.get(`${environment.BASEURL}${endpoint}`).pipe(catchError((err)=>of('Some thing when wrong')));
+  }
+
+
+  postData(endPoint:string,data:any)
+  {console.log(data)
+    return this.http.post(`${environment.BASEURL}${endPoint}`,data).pipe(catchError((err)=>of('Some thing when wrong')));
   }
 
 
