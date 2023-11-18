@@ -292,7 +292,7 @@ return this.service.getMaster(endPoint).pipe(tap(val=>console.log(val)));
 
 getMasterTopic(endPoint:string)
 {
-return lastValueFrom(this.service.getMaster(endPoint).pipe(map((data:any)=>{return data?.map((dt:any)=>{return {value:dt?.value,text:dt?.value,selected:false,id:dt?.id}})}),tap(val=>console.log(val))));
+return lastValueFrom(this.service.getMaster(endPoint).pipe(map((data:any)=>{return data?.map((dt:any)=>{return {value:dt?.value,text:dt?.value,selected:false,id:dt?.id}})})));
 }
 
 getValueDDl(ddArr:Array<any>,value:string)
