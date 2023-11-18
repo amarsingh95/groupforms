@@ -63,5 +63,5 @@ export type multiSelectType={
   export type dropDownList={
     value:string,
     text:string,
-    id?:string
+    id?:number
   }
