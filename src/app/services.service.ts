@@ -84,7 +84,7 @@ export class ServicesService {
         ]
       },
       {
-        "dname": "Mumbai",
+        "dname": "Civil",
         "students": [
           {
             "firstname": "Alakh",
